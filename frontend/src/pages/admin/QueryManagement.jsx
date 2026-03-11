@@ -9,7 +9,7 @@ const QueryManagement = () => {
 
     const fetchQueries = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/admin/queries', {
+            const res = await fetch(`${API_URL}/admin/queries`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -30,7 +30,7 @@ const QueryManagement = () => {
         if (responseText === null) return; // User cancelled
 
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/queries/${queryId}/resolve`, {
+            const response = await fetch(`${API_URL}/admin/queries/${queryId}/resolve`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

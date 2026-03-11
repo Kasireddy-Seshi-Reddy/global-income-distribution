@@ -10,7 +10,7 @@ const SessionAnalytics = () => {
     useEffect(() => {
         const fetchSessions = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/admin/sessions', {
+                const res = await fetch(`${API_URL}/admin/sessions`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await res.json();

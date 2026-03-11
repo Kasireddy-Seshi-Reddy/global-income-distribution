@@ -10,7 +10,7 @@ const ModerationLogs = () => {
     useEffect(() => {
         const fetchLogs = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/admin/moderation-logs', {
+                const res = await fetch(`${API_URL}/admin/moderation-logs`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await res.json();

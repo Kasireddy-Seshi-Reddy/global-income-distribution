@@ -16,7 +16,7 @@ export default function AnalyticsTracker() {
             const duration = Math.floor((Date.now() - enterTime.current) / 1000);
             const pageName = lastUrl.current === '/' ? 'Home' : lastUrl.current.substring(1).split('/')[0];
 
-            fetch('http://localhost:5000/api/track/page', {
+            fetch(`${API_URL}/track/page`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({

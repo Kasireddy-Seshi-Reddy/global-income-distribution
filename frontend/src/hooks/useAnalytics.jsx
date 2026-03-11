@@ -2,7 +2,6 @@ import { useEffect, useRef, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const API_URL = 'http://localhost:5000/api';
 
 export const useAnalytics = () => {
     const location = useLocation();

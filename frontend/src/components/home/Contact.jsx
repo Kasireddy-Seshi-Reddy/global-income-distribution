@@ -18,7 +18,7 @@ const Contact = () => {
                 headers['Authorization'] = `Bearer ${token}`;
             }
 
-            const response = await fetch('http://localhost:5000/api/queries', {
+            const response = await fetch(`${API_URL}/queries`, {
                 method: 'POST',
                 headers,
                 body: JSON.stringify(formData)

@@ -9,7 +9,7 @@ const UserManagement = () => {
 
     const fetchUsers = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/admin/users', {
+            const res = await fetch(`${API_URL}/admin/users`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -29,7 +29,7 @@ const UserManagement = () => {
         if (!window.confirm(`Are you sure you want to ${actionName} this user?`)) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/moderate`, {
+            const response = await fetch(`${API_URL}/admin/users/${userId}/moderate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
