@@ -1,0 +1,96 @@
+.downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.download-card {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--color-glass-border);
+    transition: all var(--transition-normal);
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary-glow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.primary-card {
+    border-color: rgba(132, 94, 247, 0.3);
+    background: rgba(132, 94, 247, 0.05);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.excel-icon {
+    background: rgba(33, 163, 102, 0.15);
+    color: #21a366;
+}
+
+.pdf-icon {
+    background: rgba(224, 50, 50, 0.15);
+    color: #e03232;
+}
+
+.pbi-icon {
+    background: rgba(242, 200, 17, 0.15);
+    color: #f2c811;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.card-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.card-meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-glass-border);
+    border-bottom: 1px solid var(--color-glass-border);
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.card-meta span:first-child {
+    color: var(--color-text);
+    font-family: monospace;
+}
+
+.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: var(--color-text-muted) !important;
+    border-color: var(--color-glass-border) !important;
+}
+
+@media (max-width: 900px) {
+    .downloads-grid {
+        grid-template-columns: 1fr;
+    }
+}

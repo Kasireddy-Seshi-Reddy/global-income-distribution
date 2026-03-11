@@ -1,0 +1,497 @@
+{
+  "belarus": {
+    "name": "Belarus",
+    "gini": 24.5,
+    "concentration": 5,
+    "gdp": 8318,
+    "median": 1643,
+    "inclusiveScore": 75.5,
+    "rank": 1
+  },
+  "slovenia": {
+    "name": "Slovenia",
+    "gini": 24.6,
+    "concentration": 5,
+    "gdp": 34301,
+    "median": 2263,
+    "inclusiveScore": 75.4,
+    "rank": 2
+  },
+  "moldova": {
+    "name": "Moldova",
+    "gini": 25.5,
+    "concentration": 5.1,
+    "gdp": 7576,
+    "median": 1533,
+    "inclusiveScore": 74.5,
+    "rank": 3
+  },
+  "czechia": {
+    "name": "Czechia",
+    "gini": 25.8,
+    "concentration": 5.9,
+    "gdp": 31823,
+    "median": 2628,
+    "inclusiveScore": 74.2,
+    "rank": 4
+  },
+  "belgium": {
+    "name": "Belgium",
+    "gini": 26.5,
+    "concentration": 6.1,
+    "gdp": 56615,
+    "median": 3066,
+    "inclusiveScore": 73.5,
+    "rank": 5
+  },
+  "norway": {
+    "name": "Norway",
+    "gini": 26.7,
+    "concentration": 6.7,
+    "gdp": 86785,
+    "median": 2957,
+    "inclusiveScore": 73.3,
+    "rank": 6
+  },
+  "kyrgyz-republic": {
+    "name": "Kyrgyz Republic",
+    "gini": 27,
+    "concentration": 5.3,
+    "gdp": 2420,
+    "median": 1789,
+    "inclusiveScore": 73,
+    "rank": 7
+  },
+  "finland": {
+    "name": "Finland",
+    "gini": 27.4,
+    "concentration": 6.7,
+    "gdp": 53150,
+    "median": 2628,
+    "inclusiveScore": 72.6,
+    "rank": 8
+  },
+  "netherlands": {
+    "name": "Netherlands",
+    "gini": 27.6,
+    "concentration": 6.5,
+    "gdp": 67520,
+    "median": 2993,
+    "inclusiveScore": 72.4,
+    "rank": 9
+  },
+  "armenia": {
+    "name": "Armenia",
+    "gini": 27.9,
+    "concentration": 6.3,
+    "gdp": 8556,
+    "median": 2373,
+    "inclusiveScore": 72.1,
+    "rank": 10
+  },
+  "poland": {
+    "name": "Poland",
+    "gini": 28.4,
+    "concentration": 6.7,
+    "gdp": 25104,
+    "median": 3322,
+    "inclusiveScore": 71.6,
+    "rank": 11
+  },
+  "sweden": {
+    "name": "Sweden",
+    "gini": 28.7,
+    "concentration": 8.6,
+    "gdp": 57117,
+    "median": 4125,
+    "inclusiveScore": 71.3,
+    "rank": 12
+  },
+  "denmark": {
+    "name": "Denmark",
+    "gini": 29,
+    "concentration": 6.6,
+    "gdp": 71026,
+    "median": 2592,
+    "inclusiveScore": 71,
+    "rank": 13
+  },
+  "ireland": {
+    "name": "Ireland",
+    "gini": 29.3,
+    "concentration": 6.9,
+    "gdp": 112895,
+    "median": 2555,
+    "inclusiveScore": 70.7,
+    "rank": 14
+  },
+  "kazakhstan": {
+    "name": "Kazakhstan",
+    "gini": 29.5,
+    "concentration": 5.7,
+    "gdp": 14155,
+    "median": 1533,
+    "inclusiveScore": 70.5,
+    "rank": 15
+  },
+  "austria": {
+    "name": "Austria",
+    "gini": 31,
+    "concentration": 8.5,
+    "gdp": 58269,
+    "median": 4234,
+    "inclusiveScore": 69,
+    "rank": 16
+  },
+  "canada": {
+    "name": "Canada",
+    "gini": 31,
+    "concentration": 6.9,
+    "gdp": 54340,
+    "median": 4453,
+    "inclusiveScore": 69,
+    "rank": 17
+  },
+  "germany": {
+    "name": "Germany",
+    "gini": 31.1,
+    "concentration": 8.1,
+    "gdp": 56104,
+    "median": 3979,
+    "inclusiveScore": 68.9,
+    "rank": 18
+  },
+  "estonia": {
+    "name": "Estonia",
+    "gini": 31.2,
+    "concentration": 8.4,
+    "gdp": 31428,
+    "median": 3614,
+    "inclusiveScore": 68.8,
+    "rank": 19
+  },
+  "france": {
+    "name": "France",
+    "gini": 31.7,
+    "concentration": 8.7,
+    "gdp": 46103,
+    "median": 4417,
+    "inclusiveScore": 68.3,
+    "rank": 20
+  },
+  "romania": {
+    "name": "Romania",
+    "gini": 32.6,
+    "concentration": 125,
+    "gdp": 20080,
+    "median": 6242,
+    "inclusiveScore": 67.4,
+    "rank": 21
+  },
+  "spain": {
+    "name": "Spain",
+    "gini": 33.4,
+    "concentration": 11.8,
+    "gdp": 35327,
+    "median": 5548,
+    "inclusiveScore": 66.6,
+    "rank": 22
+  },
+  "serbia": {
+    "name": "Serbia",
+    "gini": 33.5,
+    "concentration": 13.1,
+    "gdp": 13679,
+    "median": 5074,
+    "inclusiveScore": 66.5,
+    "rank": 23
+  },
+  "united-kingdom": {
+    "name": "United Kingdom",
+    "gini": 33.5,
+    "concentration": 8.2,
+    "gdp": 53246,
+    "median": 4636,
+    "inclusiveScore": 66.5,
+    "rank": 24
+  },
+  "georgia": {
+    "name": "Georgia",
+    "gini": 33.9,
+    "concentration": 9,
+    "gdp": 9241,
+    "median": 4490,
+    "inclusiveScore": 66.1,
+    "rank": 25
+  },
+  "italy": {
+    "name": "Italy",
+    "gini": 33.9,
+    "concentration": 10.6,
+    "gdp": 40385,
+    "median": 5439,
+    "inclusiveScore": 66.1,
+    "rank": 26
+  },
+  "russian-federation": {
+    "name": "Russian Federation",
+    "gini": 34.1,
+    "concentration": 8.4,
+    "gdp": 14889,
+    "median": 4453,
+    "inclusiveScore": 65.9,
+    "rank": 27
+  },
+  "greece": {
+    "name": "Greece",
+    "gini": 34.2,
+    "concentration": 9.8,
+    "gdp": 24626,
+    "median": 4745,
+    "inclusiveScore": 65.8,
+    "rank": 28
+  },
+  "latvia": {
+    "name": "Latvia",
+    "gini": 34.2,
+    "concentration": 10.7,
+    "gdp": 23409,
+    "median": 4526,
+    "inclusiveScore": 65.8,
+    "rank": 29
+  },
+  "thailand": {
+    "name": "Thailand",
+    "gini": 34.5,
+    "concentration": 8.2,
+    "gdp": 7347,
+    "median": 3687,
+    "inclusiveScore": 65.5,
+    "rank": 30
+  },
+  "switzerland": {
+    "name": "Switzerland",
+    "gini": 34.6,
+    "concentration": 9.5,
+    "gdp": 103998,
+    "median": 4307,
+    "inclusiveScore": 65.4,
+    "rank": 31
+  },
+  "luxembourg": {
+    "name": "Luxembourg",
+    "gini": 34.7,
+    "concentration": 8.6,
+    "gdp": 137782,
+    "median": 5402,
+    "inclusiveScore": 65.3,
+    "rank": 32
+  },
+  "indonesia": {
+    "name": "Indonesia",
+    "gini": 34.9,
+    "concentration": 8.2,
+    "gdp": 4925,
+    "median": 2519,
+    "inclusiveScore": 65.1,
+    "rank": 33
+  },
+  "lithuania": {
+    "name": "Lithuania",
+    "gini": 35.4,
+    "concentration": 12.2,
+    "gdp": 29384,
+    "median": 4672,
+    "inclusiveScore": 64.6,
+    "rank": 34
+  },
+  "viet-nam": {
+    "name": "Viet Nam",
+    "gini": 35.4,
+    "concentration": 12.1,
+    "gdp": 4717,
+    "median": 5183,
+    "inclusiveScore": 64.6,
+    "rank": 35
+  },
+  "china": {
+    "name": "China",
+    "gini": 35.6,
+    "concentration": 9.2,
+    "gdp": 13303,
+    "median": 4344,
+    "inclusiveScore": 64.4,
+    "rank": 36
+  },
+  "israel": {
+    "name": "Israel",
+    "gini": 37.3,
+    "concentration": 12.6,
+    "gdp": 54177,
+    "median": 7702,
+    "inclusiveScore": 62.7,
+    "rank": 37
+  },
+  "dominican-republic": {
+    "name": "Dominican Republic",
+    "gini": 39,
+    "concentration": 12.8,
+    "gdp": 10876,
+    "median": 5585,
+    "inclusiveScore": 61,
+    "rank": 38
+  },
+  "el-salvador": {
+    "name": "El Salvador",
+    "gini": 39,
+    "concentration": 16.3,
+    "gdp": 5580,
+    "median": 6205,
+    "inclusiveScore": 61,
+    "rank": 39
+  },
+  "bulgaria": {
+    "name": "Bulgaria",
+    "gini": 39.4,
+    "concentration": 15.1,
+    "gdp": 17596,
+    "median": 5256,
+    "inclusiveScore": 60.6,
+    "rank": 40
+  },
+  "uruguay": {
+    "name": "Uruguay",
+    "gini": 40,
+    "concentration": 13.6,
+    "gdp": 23907,
+    "median": 6351,
+    "inclusiveScore": 60,
+    "rank": 41
+  },
+  "peru": {
+    "name": "Peru",
+    "gini": 40.1,
+    "concentration": 15.2,
+    "gdp": 8452,
+    "median": 6205,
+    "inclusiveScore": 59.9,
+    "rank": 42
+  },
+  "united-states": {
+    "name": "United States",
+    "gini": 41.5,
+    "concentration": 10.9,
+    "gdp": 84534,
+    "median": 6753,
+    "inclusiveScore": 58.5,
+    "rank": 43
+  },
+  "bolivia": {
+    "name": "Bolivia",
+    "gini": 42,
+    "concentration": 20.2,
+    "gdp": 4421,
+    "median": 6643,
+    "inclusiveScore": 58,
+    "rank": 44
+  },
+  "argentina": {
+    "name": "Argentina",
+    "gini": 42.4,
+    "concentration": 16.4,
+    "gdp": 13970,
+    "median": 7154,
+    "inclusiveScore": 57.6,
+    "rank": 45
+  },
+  "chile": {
+    "name": "Chile",
+    "gini": 44.2,
+    "concentration": 16,
+    "gdp": 16710,
+    "median": 5147,
+    "inclusiveScore": 55.8,
+    "rank": 46
+  },
+  "paraguay": {
+    "name": "Paraguay",
+    "gini": 44.2,
+    "concentration": 17.5,
+    "gdp": 6416,
+    "median": 5950,
+    "inclusiveScore": 55.8,
+    "rank": 47
+  },
+  "mexico": {
+    "name": "Mexico",
+    "gini": 44.3,
+    "concentration": 16.3,
+    "gdp": 14186,
+    "median": 5840,
+    "inclusiveScore": 55.7,
+    "rank": 48
+  },
+  "ecuador": {
+    "name": "Ecuador",
+    "gini": 45.2,
+    "concentration": 22.3,
+    "gdp": 6875,
+    "median": 8030,
+    "inclusiveScore": 54.8,
+    "rank": 49
+  },
+  "turkiye": {
+    "name": "Turkiye",
+    "gini": 45.2,
+    "concentration": 16.3,
+    "gdp": 15893,
+    "median": 6388,
+    "inclusiveScore": 54.8,
+    "rank": 50
+  },
+  "honduras": {
+    "name": "Honduras",
+    "gini": 45.7,
+    "concentration": 26.9,
+    "gdp": 3426,
+    "median": 8541,
+    "inclusiveScore": 54.3,
+    "rank": 51
+  },
+  "costa-rica": {
+    "name": "Costa Rica",
+    "gini": 45.8,
+    "concentration": 20.1,
+    "gdp": 18587,
+    "median": 7263,
+    "inclusiveScore": 54.2,
+    "rank": 52
+  },
+  "panama": {
+    "name": "Panama",
+    "gini": 49.7,
+    "concentration": 31.3,
+    "gdp": 19161,
+    "median": 8468,
+    "inclusiveScore": 50.3,
+    "rank": 53
+  },
+  "brazil": {
+    "name": "Brazil",
+    "gini": 51,
+    "concentration": 34.7,
+    "gdp": 10311,
+    "median": 8067,
+    "inclusiveScore": 49,
+    "rank": 54
+  },
+  "colombia": {
+    "name": "Colombia",
+    "gini": 53.8,
+    "concentration": 43.5,
+    "gdp": 7919,
+    "median": 7957,
+    "inclusiveScore": 46.2,
+    "rank": 55
+  }
+}

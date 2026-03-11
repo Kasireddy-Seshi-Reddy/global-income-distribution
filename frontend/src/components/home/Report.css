@@ -1,0 +1,118 @@
+.report-section {
+    background: var(--color-bg-dark-alt);
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.text-left {
+    text-align: left;
+    margin-left: 0;
+}
+
+.report-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.toc-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+[data-theme='light'] .toc-item {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.toc-item:hover {
+    background: var(--color-glass);
+    border-left: 3px solid var(--color-secondary);
+    transform: translateX(5px);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}
+
+.report-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.report-preview {
+    padding: 2.5rem;
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    /* Hardcoded dark look for document preview */
+    border: 1px solid var(--color-glass-border);
+}
+
+[data-theme='light'] .report-preview {
+    background: #111;
+    color: #eee;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.report-page {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.doc-title {
+    font-size: 1.5rem;
+    font-family: var(--font-primary);
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.doc-author {
+    font-size: 0.9rem;
+    color: #aaa;
+    font-family: var(--font-primary);
+    margin-bottom: 2rem;
+}
+
+.doc-subtitle {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.doc-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.read-more-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000);
+}
+
+@media (max-width: 900px) {
+    .report-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

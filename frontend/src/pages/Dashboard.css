@@ -1,0 +1,29 @@
+.dashboard-page {
+    padding-top: var(--nav-height);
+    min-height: 100vh;
+    background-color: var(--color-bg);
+}
+
+.dashboard-page-header {
+    padding: 6rem 0 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0 0 24px 24px;
+}
+
+.dashboard-page-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 1rem 0;
+}
+
+.dashboard-page-header p {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Adjust the embed component itself now that it's on a dedicated page */
+.dashboard-page-content .dashboard-section {
+    padding-top: 0;
+}
