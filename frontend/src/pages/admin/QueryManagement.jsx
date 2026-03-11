@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Check, Mail, MessageSquare } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
+import { API_URL } from '../../config';
 
 const QueryManagement = () => {
     const { token } = useContext(AuthContext);

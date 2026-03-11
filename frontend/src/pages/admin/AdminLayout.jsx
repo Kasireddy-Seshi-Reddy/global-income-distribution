@@ -3,6 +3,7 @@ import { Link, useLocation, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Users, Activity, MessageSquare, ShieldAlert, Download } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
 import './AdminLayout.css';
+import { API_URL } from '../../config';
 
 const AdminLayout = () => {
     const location = useLocation();

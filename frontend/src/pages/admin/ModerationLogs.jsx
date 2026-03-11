@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { ShieldAlert } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
+import { API_URL } from '../../config';
 
 const ModerationLogs = () => {
     const { token } = useContext(AuthContext);

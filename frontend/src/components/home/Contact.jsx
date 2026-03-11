@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Send, MapPin, Mail, Linkedin, Github } from 'lucide-react';
 import './Contact.css';
+import { API_URL } from '../../config';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });

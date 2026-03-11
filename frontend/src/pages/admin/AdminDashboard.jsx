@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Users, Activity, Clock, MousePointerClick, MessageSquare } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
+import { API_URL } from '../../config';
 
 const AdminDashboard = () => {
     const { token } = useContext(AuthContext);

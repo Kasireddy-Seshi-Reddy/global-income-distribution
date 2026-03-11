@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Activity, Clock } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
+import { API_URL } from '../../config';
 
 const SessionAnalytics = () => {
     const { token } = useContext(AuthContext);

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 
 export const useAnalytics = () => {
