@@ -22,6 +22,8 @@
     padding: 2rem;
     width: 100%;
     max-width: 450px;
+    max-height: 90vh; /* Prevent modal from exceeding screen height */
+    overflow-y: auto; /* Enable internal scrolling */
     color: var(--color-text);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -161,4 +163,24 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+/* Custom Scrollbar for Profile Modal */
+.profile-modal::-webkit-scrollbar {
+    width: 6px;
+}
+.profile-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+.profile-modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+.profile-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+[data-theme='light'] .profile-modal::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+}
+[data-theme='light'] .profile-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
