@@ -30,7 +30,8 @@ The platform is designed with a modern **Glassmorphism** aesthetic, utilizing de
 
 ### 🔐 Authenticated Areas (Login Required)
 1. **Secure Authentication:** Users can create accounts and log in using a custom Email/Password system backed by JWT token security.
-2. **Interactive Power BI Dashboard:** The centerpiece of the application. A massive, interactive data visualization canvas embedded directly into the application, allowing users to filter income data by region, country, and year.
+2. **Interactive Power BI Dashboard (Seamless Embedding):** The centerpiece of the application. A massive, fully interactive data visualization canvas is seamlessly embedded directly into the React routing architecture. 
+    *   **User Interaction:** Instead of downloading static charts, users can actively interact with the data directly inside the browser. By clicking on specific countries on the map, sliding timeline scales, or clicking specific income brackets, the entire dashboard dynamically filters and recalculates the surrounding charts in real-time, providing a frictionless, native analytical experience.
 3. **Country Comparison Tool:** Analytical tools to pit different socioeconomic regions against one another.
 4. **Data Export & Downloads:** Authenticated users can download raw spreadsheets or research reports.
 5. **Session Tracking:** The application silently tracks user page views, login frequency, and session duration to generate usage heatmaps.
@@ -78,7 +79,8 @@ The application was built systematically through rapid, phase-based continuous i
 1.  **Scaffolding:** Initialized the React application using Vite for speed.
 2.  **Design System:** Built `index.css` to define the global color variables, glass-panel mixins, and gradient text utilities.
 3.  **Component Architecture:** Broke the UI down into reusable parts: `Navbar`, `Footer`, `AuthContainer`, and `HeroSection`.
-4.  **Routing:** Set up `react-router-dom` to map URLs (e.g., `/login`, `/dashboard`) to specific React components.
+4.  **Power BI Embed Integration:** Integrated the published Power BI report directly into the React `Dashboard` component using a responsive, responsive viewport-aware iframe structure. The embed container actively hides external Microsoft navigation menus to strictly maintain the illusion of a single, unified webpage.
+5.  **Routing:** Set up `react-router-dom` to map URLs (e.g., `/login`, `/dashboard`) to specific React components.
 
 ### Phase 2: Database Design & Backend Scaffolding
 1.  **Express Setup:** Created a basic Node server running on port 5000.
