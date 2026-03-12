@@ -42,6 +42,14 @@ const Navbar = ({ isInitialLoad }) => {
 
     const closeMenu = () => setMobileMenuOpen(false);
 
+    const handleHomeClick = (e) => {
+        if (location.pathname === '/') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        closeMenu();
+    };
+
     return (
         <nav className={`navbar ${scrolled ? 'glass-panel scrolled' : ''} ${isInitialLoad ? 'initial-load' : ''}`}>
             <div className="container nav-container">
@@ -63,7 +71,7 @@ const Navbar = ({ isInitialLoad }) => {
                 {/* Desktop Menu */}
                 {!isAuthPage && (
                     <div className="nav-links desktop-only">
-                        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+                        <Link to="/" onClick={handleHomeClick} className={location.pathname === '/' ? 'active' : ''}>Home</Link>
                         <Link to="/#about">About</Link>
                         <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
                         {isAuthenticated && user?.role === 'Admin' && (
@@ -107,7 +115,7 @@ const Navbar = ({ isInitialLoad }) => {
                 <div className="mobile-links">
                     {!isAuthPage && (
                         <>
-                            <Link to="/" onClick={closeMenu}>Home</Link>
+                            <Link to="/" onClick={handleHomeClick}>Home</Link>
                             <Link to="/#about" onClick={closeMenu}>About</Link>
                             <Link to="/dashboard" onClick={closeMenu}>Dashboard</Link>
                             {isAuthenticated && user?.role === 'Admin' && (
