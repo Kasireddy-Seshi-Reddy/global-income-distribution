@@ -24,6 +24,8 @@
     max-width: 450px;
     max-height: 90vh; /* Prevent modal from exceeding screen height */
     overflow-y: auto; /* Enable internal scrolling */
+    -webkit-overflow-scrolling: touch; /* Momentum scrolling for mobile */
+    overscroll-behavior: contain; /* Isolate scroll from background body */
     color: var(--color-text);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -184,3 +186,4 @@
 [data-theme='light'] .profile-modal::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
 }
+
