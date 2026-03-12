@@ -1,16 +1,18 @@
-# React + Vite
+# 🌍 Global Income Inequality Intelligence Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, research-grade platform designed to analyze and visualize global income concentration and inclusive development trends.
 
-Currently, two official plugins are available:
+## Project Overview
+This portal transforms complex socioeconomic datasets into a premium, interactive experience. It features a high-performance React frontend with glassmorphism design, a secure Node.js backend, and a real-time Power BI dashboard, providing users with frictionless insights into global economic patterns.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Why This Site is Useful
+*   **Interactive Analytics:** Offers dynamic data mapping and country comparison tools.
+*   **Secure Research Hub:** Provides a personalized workspace for data analysts with secure JWT-based authentication.
+*   **Real-time Tracking:** Includes a comprehensive Admin Portal for monitoring global metrics and user interactions.
+*   **Educational Outreach:** Makes critical socioeconomic data accessible to researchers, policy makers, and students through intuitive visualizations.
 
-## React Compiler
+## Credits
+This project was developed by **Kasireddy Seshi Reddy** as part of the **Infosys Springboard** project framework.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+**Live Deployment:** [global-income-distribution.vercel.app](https://global-income-distribution.vercel.app)
