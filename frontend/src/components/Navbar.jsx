@@ -127,7 +127,7 @@ const Navbar = ({ isInitialLoad }) => {
                             <Link to="/#about" onClick={closeMenu}>About</Link>
                             <Link to="/dashboard" onClick={closeMenu}>Dashboard</Link>
                             {isAuthenticated && user?.role === 'Admin' && (
-                                <Link to="/admin" onClick={closeMenu} className="gradient-text">Admin Portal</Link>
+                                <Link to="/admin" onClick={handleAdminClick} className="gradient-text">Admin Portal</Link>
                             )}
                             <hr />
                         </>
