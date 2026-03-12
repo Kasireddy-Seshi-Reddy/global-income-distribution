@@ -36,7 +36,7 @@ The platform is designed with a modern **Glassmorphism** aesthetic, utilizing de
 5. **Session Tracking:** The application silently tracks user page views, login frequency, and session duration to generate usage heatmaps.
 
 ### 🛡️ Admin Portal (Restricted Access)
-Restricted exclusively to the project lead (`bunnyseshireddy@gmail.com`).
+Restricted exclusively to the project lead.
 1. **KPI Dashboard:** Real-time metrics on total registered users, active sessions, and active queries.
 2. **User Management:** An interactive data grid allowing the Admin to view all registered accounts, Suspend users, Kick users offline, or permanently Ban them.
 3. **Moderation Logs:** An audit trail of all disciplinary actions taken against accounts.
