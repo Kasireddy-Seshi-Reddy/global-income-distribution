@@ -9,6 +9,7 @@ const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [toastMessage, setToastMessage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,6 +23,11 @@ const Login = () => {
 
         if (!formData.password) newErrors.password = "Password is required";
         return newErrors;
+    };
+
+    const handleSocialAuth = (provider) => {
+        setToastMessage(`${provider} authentication is coming in Phase 7!`);
+        setTimeout(() => setToastMessage(null), 3000);
     };
 
     const handleSubmit = (e) => {
@@ -119,11 +125,16 @@ const Login = () => {
                         <span>Or continue with</span>
                     </div>
 
-                    <div className="social-auth-row">
-                        <button className="btn btn-outline social-auth-btn">
+                    <div className="social-auth-row" style={{ position: 'relative' }}>
+                        {toastMessage && (
+                            <div className="auth-toast fade-in-up">
+                                {toastMessage}
+                            </div>
+                        )}
+                        <button type="button" onClick={() => handleSocialAuth('GitHub')} className="btn btn-outline social-auth-btn">
                             <Github size={18} /> GitHub
                         </button>
-                        <button className="btn btn-outline social-auth-btn">
+                        <button type="button" onClick={() => handleSocialAuth('LinkedIn')} className="btn btn-outline social-auth-btn">
                             <Linkedin size={18} /> LinkedIn
                         </button>
                     </div>

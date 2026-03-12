@@ -394,4 +394,20 @@
     .auth-card {
         padding: 2rem 1.5rem;
     }
+}.auth-toast {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(56, 189, 248, 0.15); /* matching primary cyan glow */
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
