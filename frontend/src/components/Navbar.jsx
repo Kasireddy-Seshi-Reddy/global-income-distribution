@@ -50,6 +50,14 @@ const Navbar = ({ isInitialLoad }) => {
         closeMenu();
     };
 
+    const handleAdminClick = (e) => {
+        if (location.pathname.startsWith('/admin')) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        closeMenu();
+    };
+
     return (
         <nav className={`navbar ${scrolled ? 'glass-panel scrolled' : ''} ${isInitialLoad ? 'initial-load' : ''}`}>
             <div className="container nav-container">
@@ -75,7 +83,7 @@ const Navbar = ({ isInitialLoad }) => {
                         <Link to="/#about">About</Link>
                         <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
                         {isAuthenticated && user?.role === 'Admin' && (
-                            <Link to="/admin" className={location.pathname.startsWith('/admin') ? 'active gradient-text' : 'gradient-text'}>Admin Portal</Link>
+                            <Link to="/admin" onClick={handleAdminClick} className={location.pathname.startsWith('/admin') ? 'active gradient-text' : 'gradient-text'}>Admin Portal</Link>
                         )}
                     </div>
                 )}
