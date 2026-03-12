@@ -3,6 +3,8 @@
 
 *A comprehensive breakdown of features, technology, and development methodology for the interactive socioeconomic research dashboard.*
 
+**Live Deployment:** [global-income-distribution.vercel.app](https://global-income-distribution.vercel.app)
+
 ---
 
 ## 1. Project Overview & Objective
