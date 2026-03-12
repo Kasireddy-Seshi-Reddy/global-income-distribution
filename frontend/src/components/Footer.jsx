@@ -23,9 +23,9 @@ const Footer = () => {
                             global income concentration and inclusive development momentum.
                         </p>
                         <div className="social-links">
-                            <a href="#" aria-label="LinkedIn" className="social-link"><Linkedin size={20} /></a>
-                            <a href="#" aria-label="GitHub" className="social-link"><Github size={20} /></a>
-                            <a href="#" aria-label="Email" className="social-link"><Mail size={20} /></a>
+                            <a href="https://www.linkedin.com/in/seshi-reddy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link"><Linkedin size={20} /></a>
+                            <a href="https://github.com/Kasireddy-Seshi-Reddy/global-income-distribution" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link"><Github size={20} /></a>
+                            <a href="mailto:kasireddy.seshireddy@university.edu" aria-label="Email" className="social-link"><Mail size={20} /></a>
                         </div>
                     </div>
 
