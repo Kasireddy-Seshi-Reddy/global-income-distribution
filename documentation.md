@@ -21,7 +21,7 @@ This platform was developed as part of the **Infosys Springboard** project frame
 
 The platform is designed with a modern **Glassmorphism** aesthetic, utilizing deep dark-mode themes, vibrant neon accents, and smooth micro-animations to create a highly engaging, premium feel.
 
-### 📊 Public Facing Areas (No Login Required)
+### 📊 Public Facing Areas
 1. **Interactive Homepage:** A dynamic landing page that introduces the core problem of global wealth inequality with stunning entrance animations and responsive parallax effects.
 2. **About Inequality:** Educational sections defining key terms (e.g., The Gini Coefficient, Wealth Concentration).
 3. **Data & Methodology:** Transparent explanations of how the foundational dataset was collected, cleaned, and analyzed.
