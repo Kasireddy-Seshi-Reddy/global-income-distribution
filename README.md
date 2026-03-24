@@ -12,7 +12,7 @@ This portal transforms complex socioeconomic datasets into a premium, interactiv
 *   **Educational Outreach:** Makes critical socioeconomic data accessible to researchers, policy makers, and students through intuitive visualizations.
 
 ## Credits
-This project is developed by **Kasireddy Seshi Reddy** as part of the **Infosys Springboard** project framework.
+This project is developed by the **Infosys Intern Team** as part of the **Infosys Springboard** project framework.
 
 ---
 **Live Deployment:** [global-income-distribution.vercel.app](https://global-income-distribution.vercel.app)

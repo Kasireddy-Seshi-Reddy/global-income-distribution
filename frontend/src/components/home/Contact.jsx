@@ -68,7 +68,7 @@ const Contact = () => {
                             <div className="info-item">
                                 <Mail className="info-icon" />
                                 <div>
-                                    <strong>Kasireddy Seshi Reddy</strong>
+                                    <strong>Infosys Intern Team</strong>
                                     <span>Project Lead / Data Analyst</span>
                                 </div>
                             </div>

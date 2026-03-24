@@ -46,7 +46,7 @@ const Footer = () => {
 
                     <div className="footer-project">
                         <h4>Infosys Springboard</h4>
-                        <p><strong>Project by:</strong> Kasireddy Seshi Reddy</p>
+                        <p><strong>Project by:</strong> Infosys Intern Team</p>
                         <p><strong>Project Title:</strong> Interactive Analytics Dashboard for Global Income Distribution</p>
                         <div className="footer-glass-badge">
                             Research Project 2026

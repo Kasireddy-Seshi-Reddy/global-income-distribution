@@ -13,7 +13,7 @@ The **Global Income Inequality Intelligence Portal** is a premium, research-grad
 
 The core objective of this platform is to transform raw socioeconomic datasets into an interactive, visually stunning, and easily digestible experience for researchers, policy makers, and students. It acts as both a public-facing presentation tool and a secure, personalized portal for authenticated data analysts.
 
-This platform was developed as part of the **Infosys Springboard** project framework by Data Analyst **Kasireddy Seshi Reddy**.
+This platform was developed as part of the **Infosys Springboard** project framework by the **Infosys Intern Team**.
 
 ---
 

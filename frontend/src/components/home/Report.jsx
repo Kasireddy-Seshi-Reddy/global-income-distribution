@@ -51,7 +51,7 @@ const Report = () => {
                     <div className="report-preview glass-panel">
                         <div className="report-page">
                             <h3 className="doc-title">Project Documentation: Interactive Analytics Dashboard</h3>
-                            <div className="doc-author">Author: Kasireddy Seshi Reddy | Infosys Springboard</div>
+                            <div className="doc-author">Author: Infosys Intern Team | Infosys Springboard</div>
                             <p className="doc-text">
                                 The objective of this project is to create an interactive analytics dashboard for exploring global income distribution patterns. Using Power BI, we implement a robust data engineering framework derived from Merged_sheet.xlsx spanning multiple socioeconomic indicators.
                             </p>
