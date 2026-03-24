@@ -112,6 +112,18 @@
     flex-direction: column;
 }
 
+.iframe-container iframe {
+    zoom: 0.6;
+}
+
+.iframe-container iframe:fullscreen {
+    zoom: 1;
+}
+
+.iframe-container iframe:-webkit-full-screen {
+    zoom: 1;
+}
+
 .iframe-placeholder {
     width: 100%;
     height: 100%;
