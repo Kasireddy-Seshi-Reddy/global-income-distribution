@@ -27,7 +27,7 @@ const Downloads = () => {
                             <span>Merged_sheet.xlsx</span>
                             <span>2.4 MB</span>
                         </div>
-                        <a href="https://1drv.ms/x/c/597d31b69ede844f/IQBy0XiR5t8KSYZooAXtE24sAbdazsL4mar7uHo_1tSTHV8?e=MZdcXR" target="_blank" rel="noopener noreferrer" className="btn btn-outline full-width" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+                        <a href="https://1drv.ms/x/c/597d31b69ede844f/IQBy0XiR5t8KSYZooAXtE24sAbdazsL4mar7uHo_1tSTHV8?download=1" target="_blank" rel="noopener noreferrer" className="btn btn-outline full-width" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
                             <Download size={18} /> Download Dataset
                         </a>
                     </div>
