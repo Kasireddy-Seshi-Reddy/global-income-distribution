@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'global_inequality_super_secret_key_2026';
-const ADMIN_EMAIL = 'bunnyseshireddy@gmail.com';
+const ADMIN_EMAIL = 'infosysteam@gmail.com';
 
 export const verifyToken = (req, res, next) => {
     const bearerHeader = req.headers['authorization'];

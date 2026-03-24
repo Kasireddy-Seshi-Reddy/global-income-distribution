@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import { generateToken } from '../middleware/auth.js';
 
 const router = express.Router();
-const ADMIN_EMAIL = 'bunnyseshireddy@gmail.com';
+const ADMIN_EMAIL = 'infosysteam@gmail.com';
 
 // POST /api/auth/signup
 router.post('/signup', async (req, res) => {

@@ -98,7 +98,7 @@ The application was built systematically through rapid, phase-based continuous i
 
 ### Phase 4: The Admin Portal & Tracking Telemetry
 1.  **Frontend Hook:** Created a `useAnalytics` React hook that fires every time the user's `Location` (URL) changes, sending a ping to the backend's `/api/track/page` endpoint.
-2.  **Admin UI:** Built a dedicated, restricted layout for `bunnyseshireddy@gmail.com` using complex grid systems to display data tables.
+2.  **Admin UI:** Built a dedicated, restricted layout for `infosysteam@gmail.com` using complex grid systems to display data tables.
 3.  **Action Handlers:** Wired buttons in the Admin UI (e.g., "Ban User") to corresponding `DELETE` or `UPDATE` API routes on the backend.
 
 ### Phase 5: Final Polish & Production Deployment
