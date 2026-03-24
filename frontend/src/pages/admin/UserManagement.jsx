@@ -75,7 +75,7 @@ const UserManagement = () => {
                                 <td>{user.Role}</td>
                                 <td>
                                     <span className={`status-badge status-${(user.AccountStatus || 'active').toLowerCase()}`}>
-                                        {user.AccountStatus}
+                                        {user.AccountStatus || 'Active'}
                                     </span>
                                 </td>
                                 <td>{Math.floor((user.TotalTimeSpentOnWebsite || 0) / 60)} mins</td>

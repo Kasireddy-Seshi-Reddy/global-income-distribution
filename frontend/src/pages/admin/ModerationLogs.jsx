@@ -55,9 +55,9 @@ const ModerationLogs = () => {
                                     <small style={{ color: 'var(--color-text-muted)' }}>{log.UserEmail}</small>
                                 </td>
                                 <td>
-                                    <span className={`status-badge status-${log.ActionTaken.toLowerCase()}`}>
+                                    <span className={`status-badge status-${(log.ActionTaken || 'unknown').toLowerCase()}`}>
                                         <ShieldAlert size={12} style={{ display: 'inline', marginRight: '4px' }} />
-                                        {log.ActionTaken}
+                                        {log.ActionTaken || 'Unknown'}
                                     </span>
                                 </td>
                                 <td>{log.Reason}</td>
