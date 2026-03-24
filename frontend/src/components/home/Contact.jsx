@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send, MapPin, Mail, Linkedin, Github } from 'lucide-react';
+import { Send, MapPin, Mail, Github } from 'lucide-react';
 import './Contact.css';
 import { API_URL } from '../../config';
 
