@@ -52,7 +52,7 @@ const Hero = () => {
                         <Link to="/dashboard" className="btn btn-primary hero-btn">
                             Explore Dashboard <ArrowRight size={18} />
                         </Link>
-                        <a href="#downloads" className="btn btn-outline hero-btn">
+                        <a href="https://1drv.ms/x/c/597d31b69ede844f/IQBy0XiR5t8KSYZooAXtE24sAbdazsL4mar7uHo_1tSTHV8?e=MZdcXR" target="_blank" rel="noopener noreferrer" className="btn btn-outline hero-btn">
                             <Download size={18} /> Download Dataset
                         </a>
                     </div>
