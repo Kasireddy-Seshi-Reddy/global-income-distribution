@@ -75,9 +75,6 @@ const Contact = () => {
                         </div>
 
                         <div className="contact-socials">
-                            <a href="https://www.linkedin.com/in/seshi-reddy/" target="_blank" rel="noopener noreferrer" className="social-pill">
-                                <Linkedin size={18} /> LinkedIn Profile
-                            </a>
                             <a href="https://github.com/Kasireddy-Seshi-Reddy/global-income-distribution" target="_blank" rel="noopener noreferrer" className="social-pill">
                                 <Github size={18} /> GitHub Repository
                             </a>
