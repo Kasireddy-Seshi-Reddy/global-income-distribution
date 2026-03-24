@@ -16,6 +16,7 @@ export default function AnalyticsTracker() {
         return () => {
             const duration = Math.floor((Date.now() - enterTime.current) / 1000);
             const pageName = lastUrl.current === '/' ? 'Home' : lastUrl.current.substring(1).split('/')[0];
+            const sessionId = localStorage.getItem('global_ineq_session_id');
 
             fetch(`${API_URL}/track/page`, {
                 method: 'POST',
@@ -23,7 +24,8 @@ export default function AnalyticsTracker() {
                 body: JSON.stringify({
                     pageName,
                     pageUrl: lastUrl.current,
-                    durationSpent: duration
+                    durationSpent: duration,
+                    sessionId: sessionId ? parseInt(sessionId) : null
                 })
             }).catch(e => console.error('Failed to log page view:', e));
         };

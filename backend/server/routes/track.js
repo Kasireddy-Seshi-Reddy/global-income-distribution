@@ -62,7 +62,7 @@ router.post('/session/end', verifyToken, async (req, res) => {
 // POST /api/track/page
 router.post('/page', verifyToken, async (req, res) => {
     try {
-        const { pageName, pageUrl, durationSpent } = req.body;
+        const { pageName, pageUrl, durationSpent, sessionId } = req.body;
         const db = req.db;
 
         await db.run(`
@@ -70,17 +70,23 @@ router.post('/page', verifyToken, async (req, res) => {
             VALUES (?, ?, ?, ?)
         `, [req.user.id, pageName, pageUrl, durationSpent]);
 
-        // Dynamically append this duration to the latest session since explicit logouts are unreliable
-        const latestSession = await db.get(`SELECT SessionID FROM UserSessions WHERE UserID = ? ORDER BY LoginTime DESC LIMIT 1`, [req.user.id]);
+        // If a specific sessionId is provided, update that session. 
+        // Otherwise fallback to the latest one (multi-login support).
+        let sessionToUpdate;
+        if (sessionId) {
+            sessionToUpdate = { SessionID: sessionId };
+        } else {
+            sessionToUpdate = await db.get(`SELECT SessionID FROM UserSessions WHERE UserID = ? ORDER BY LoginTime DESC LIMIT 1`, [req.user.id]);
+        }
         
-        if (latestSession) {
+        if (sessionToUpdate) {
             await db.run(`
                 UPDATE UserSessions 
                 SET SessionDuration = COALESCE(SessionDuration, 0) + ?, 
                     PagesVisited = COALESCE(PagesVisited, 0) + 1,
                     LogoutTime = CURRENT_TIMESTAMP
                 WHERE SessionID = ?
-            `, [durationSpent, latestSession.SessionID]);
+            `, [durationSpent, sessionToUpdate.SessionID]);
         }
 
         res.status(201).json({ success: true });
