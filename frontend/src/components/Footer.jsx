@@ -1,16 +1,18 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Github, ArrowUpRight, Globe } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
     const { isAuthenticated } = useContext(AuthContext);
+    const location = useLocation();
+    const isAdmin = location.pathname.startsWith('/admin');
 
     if (!isAuthenticated) return null;
 
     return (
-        <footer className="footer section">
+        <footer className={`footer section ${isAdmin ? 'footer-admin' : ''}`}>
             <div className="container">
                 <div className="footer-grid">
                     <div className="footer-brand">

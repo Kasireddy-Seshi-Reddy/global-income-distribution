@@ -110,7 +110,15 @@
     color: var(--color-text);
 }
 
+.footer-admin {
+    margin-left: 250px;
+    transition: margin-left var(--transition-fast);
+}
+
 @media (max-width: 900px) {
+    .footer-admin {
+        margin-left: 0;
+    }
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
