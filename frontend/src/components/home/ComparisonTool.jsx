@@ -50,7 +50,7 @@ const ComparisonTool = () => {
                             ))}
                         </select>
 
-                        <div className="compare-icon">
+                        <div className="compare-icon" onClick={() => { setCountry1(country2); setCountry2(country1); }} style={{ cursor: 'pointer' }} title="Swap Countries">
                             <ArrowRightLeft size={24} />
                         </div>
 
