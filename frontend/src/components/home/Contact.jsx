@@ -75,7 +75,7 @@ const Contact = () => {
                         </div>
 
                         <div className="contact-socials">
-                            <a href="https://github.com/Kasireddy-Seshi-Reddy/global-income-distribution" target="_blank" rel="noopener noreferrer" className="social-pill">
+                            <a href="https://github.com/Springboard-Internship-2025/Interactive-Analytics-Dashboard-for-Global-Income-Distribution_Feb_Batch-8_2026/tree/Kasireddy-Seshi-Reddy" target="_blank" rel="noopener noreferrer" className="social-pill">
                                 <Github size={18} /> GitHub Repository
                             </a>
                         </div>
