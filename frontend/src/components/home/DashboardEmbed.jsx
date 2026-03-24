@@ -68,8 +68,8 @@ const DashboardEmbed = () => {
                         <div className="iframe-container" style={{ width: '100%', height: '100%', minHeight: '400px', flexGrow: 1, borderRadius: '12px', overflow: 'hidden' }}>
                             <iframe 
                                 ref={iframeRef}
-                                title="Infosys_Project_Dashboard" 
-                                src="https://app.powerbi.com/view?r=eyJrIjoiMmY5ZTU5MjQtOTQ5Mi00MjY3LTkzYjAtMzllZjBiZDBlZWNmIiwidCI6ImUxNGU3M2ViLTUyNTEtNDM4OC04ZDY3LThmOWYyZTJkNWE0NiIsImMiOjEwfQ%3D%3D&pageName=936e2bb2623ebc6b072e&navContentPaneEnabled=false" 
+                                title="Global Income Distribution Dashboard_Infosys" 
+                                src="https://app.powerbi.com/view?r=eyJrIjoiODExYTdmYjEtYTU0OS00MDJhLTk0Y2EtODA4OTEwY2RmYzFmIiwidCI6ImUxNGU3M2ViLTUyNTEtNDM4OC04ZDY3LThmOWYyZTJkNWE0NiIsImMiOjEwfQ%3D%3D&pageName=fc57fd5d4d7fe021e329&navContentPaneEnabled=false" 
                                 frameBorder="0" 
                                 allowFullScreen={true}
                                 style={{ width: '100%', height: '100%', border: 'none' }}
