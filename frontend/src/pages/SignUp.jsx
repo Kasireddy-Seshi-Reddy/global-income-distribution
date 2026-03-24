@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, User, Briefcase, ArrowRight, Github, Linkedin, Globe } from 'lucide-react';
+import { Mail, Lock, User, Briefcase, ArrowRight, Globe } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import './Auth.css';
 
@@ -15,7 +15,6 @@ const SignUp = () => {
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [toastMessage, setToastMessage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,10 +38,7 @@ const SignUp = () => {
         return newErrors;
     };
 
-    const handleSocialAuth = (provider) => {
-        setToastMessage(`${provider} registration is coming in Phase 7!`);
-        setTimeout(() => setToastMessage(null), 3000);
-    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -173,23 +169,6 @@ const SignUp = () => {
                         </button>
                     </form>
 
-                    <div className="auth-divider">
-                        <span>Or register with</span>
-                    </div>
-
-                    <div className="social-auth-row" style={{ position: 'relative' }}>
-                        {toastMessage && (
-                            <div className="auth-toast fade-in-up">
-                                {toastMessage}
-                            </div>
-                        )}
-                        <button type="button" onClick={() => handleSocialAuth('GitHub')} className="btn btn-outline social-auth-btn">
-                            <Github size={18} /> GitHub
-                        </button>
-                        <button type="button" onClick={() => handleSocialAuth('LinkedIn')} className="btn btn-outline social-auth-btn">
-                            <Linkedin size={18} /> LinkedIn
-                        </button>
-                    </div>
 
                     <div className="auth-footer">
                         Already have an account? <Link to="/login" className="gradient-text">Log In</Link>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, ArrowRight, Github, Linkedin, Globe } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Globe } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import './Auth.css';
 
@@ -9,7 +9,6 @@ const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [toastMessage, setToastMessage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,10 +24,7 @@ const Login = () => {
         return newErrors;
     };
 
-    const handleSocialAuth = (provider) => {
-        setToastMessage(`${provider} authentication is coming in Phase 7!`);
-        setTimeout(() => setToastMessage(null), 3000);
-    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -121,23 +117,6 @@ const Login = () => {
                         </button>
                     </form>
 
-                    <div className="auth-divider">
-                        <span>Or continue with</span>
-                    </div>
-
-                    <div className="social-auth-row" style={{ position: 'relative' }}>
-                        {toastMessage && (
-                            <div className="auth-toast fade-in-up">
-                                {toastMessage}
-                            </div>
-                        )}
-                        <button type="button" onClick={() => handleSocialAuth('GitHub')} className="btn btn-outline social-auth-btn">
-                            <Github size={18} /> GitHub
-                        </button>
-                        <button type="button" onClick={() => handleSocialAuth('LinkedIn')} className="btn btn-outline social-auth-btn">
-                            <Linkedin size={18} /> LinkedIn
-                        </button>
-                    </div>
 
                     <div className="auth-footer">
                         Don't have an account? <Link to="/signup" className="gradient-text">Sign Up</Link>
