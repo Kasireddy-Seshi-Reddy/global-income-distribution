@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { Github, Mail, ArrowUpRight, Globe } from 'lucide-react';
+import { Github, ArrowUpRight, Globe } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -25,7 +25,7 @@ const Footer = () => {
                         <div className="social-links">
 
                             <a href="https://github.com/Springboard-Internship-2025/Interactive-Analytics-Dashboard-for-Global-Income-Distribution_Feb_Batch-8_2026/tree/Kasireddy-Seshi-Reddy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link"><Github size={20} /></a>
-                            <a href="mailto:kasireddy.seshireddy@university.edu" aria-label="Email" className="social-link"><Mail size={20} /></a>
+
                         </div>
                     </div>
 
