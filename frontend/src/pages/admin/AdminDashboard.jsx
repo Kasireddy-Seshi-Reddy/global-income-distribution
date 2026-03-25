@@ -31,7 +31,12 @@ const AdminDashboard = () => {
                 setLoading(false);
             }
         };
+
         fetchStats();
+        
+        // Real-time Update: Poll every 30 seconds
+        const pollInterval = setInterval(fetchStats, 30000);
+        return () => clearInterval(pollInterval);
     }, [token]);
 
     const formatTime = (seconds) => {
@@ -57,7 +62,7 @@ const AdminDashboard = () => {
                 <div className="kpi-card glass-panel" style={{ '--color-primary': 'var(--color-accent)' }}>
                     <div className="kpi-icon-wrapper" style={{ color: 'var(--color-primary)' }}><Activity size={28} /></div>
                     <div className="kpi-info">
-                        <h4>Active Users (24h)</h4>
+                        <h4>Active Users (Live)</h4>
                         <div className="kpi-value">{stats.activeUsers}</div>
                     </div>
                 </div>

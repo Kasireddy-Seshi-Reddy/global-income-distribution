@@ -87,6 +87,9 @@ router.post('/page', verifyToken, async (req, res) => {
                     LogoutTime = CURRENT_TIMESTAMP
                 WHERE SessionID = ?
             `, [durationSpent, sessionToUpdate.SessionID]);
+
+            // Real-time update for User's last active mark
+            await db.run(`UPDATE Users SET LastActiveTimestamp = CURRENT_TIMESTAMP WHERE UserID = ?`, [req.user.id]);
         }
 
         res.status(201).json({ success: true });

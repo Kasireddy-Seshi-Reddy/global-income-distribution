@@ -22,7 +22,12 @@ const SessionAnalytics = () => {
                 setLoading(false);
             }
         };
+
         fetchSessions();
+        
+        // Real-time Update: Poll every 30 seconds
+        const pollInterval = setInterval(fetchSessions, 30000);
+        return () => clearInterval(pollInterval);
     }, [token]);
 
     if (loading) return <div>Loading Analytics...</div>;

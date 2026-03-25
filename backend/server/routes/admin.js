@@ -13,7 +13,7 @@ router.get('/stats', async (req, res) => {
         const totalUsers = await db.get('SELECT COUNT(*) as count FROM Users');
         const totalSessions = await db.get('SELECT COUNT(*) as count FROM UserSessions');
         const avgSessionTime = await db.get('SELECT AVG(SessionDuration) as avgTime FROM UserSessions WHERE SessionDuration IS NOT NULL');
-        const active24hrs = await db.get(`SELECT COUNT(*) as count FROM Users WHERE LastActiveTimestamp >= datetime('now', '-1 day')`);
+        const active24hrs = await db.get(`SELECT COUNT(*) as count FROM Users WHERE LastActiveTimestamp >= datetime('now', '-15 minutes')`);
 
         // Mocking some complex metrics for the overview
         const mostVisitedRow = await db.get(`SELECT PageName, COUNT(*) as visits FROM PageActivity GROUP BY PageName ORDER BY visits DESC LIMIT 1`);
