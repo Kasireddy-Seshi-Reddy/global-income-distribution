@@ -32,6 +32,8 @@ const SupportTracker = () => {
         };
 
         fetchMyQueries();
+        const poll = setInterval(fetchMyQueries, 30000);
+        return () => clearInterval(poll);
     }, [token]);
 
     if (!token) return null;

@@ -30,16 +30,18 @@ router.post('/', async (req, res) => {
         }
 
         let userId = null;
-        // Check if token was provided to link the query to an authenticated user account
+        // Robust Optional Authentication: Link to user account if logged in
         const bearerHeader = req.headers['authorization'];
         if (bearerHeader) {
             const token = bearerHeader.split(' ')[1];
             try {
+                // Use the same secret and logic as our main auth middleware
                 const JWT_SECRET = process.env.JWT_SECRET || 'global_inequality_super_secret_key_2026';
                 const decoded = jwt.verify(token, JWT_SECRET);
                 userId = decoded.id;
+                console.log(`Liking query to authenticated UserID: ${userId}`);
             } catch (e) {
-                // ignore token errors, treat as public user submit
+                console.warn('Query submitted with invalid token, treating as guest:', e.message);
             }
         }
 

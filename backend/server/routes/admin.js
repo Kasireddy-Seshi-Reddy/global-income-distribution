@@ -85,7 +85,7 @@ router.post('/users/:id/reset-password', async (req, res) => {
         const bcrypt = await import('bcryptjs');
         const hashedPassword = await bcrypt.default.hash(newPassword, 10);
 
-        await db.run('UPDATE Users SET Password = ? WHERE UserID = ?', [hashedPassword, id]);
+        await db.run('UPDATE Users SET PasswordHash = ? WHERE UserID = ?', [hashedPassword, id]);
 
         await db.run(`
             INSERT INTO UserModerationLogs (UserID, ActionTaken, Reason, AdminEmail, Notes)
