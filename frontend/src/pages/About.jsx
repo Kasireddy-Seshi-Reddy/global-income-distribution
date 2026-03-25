@@ -19,6 +19,13 @@ const About = () => {
             statLabel: "hold 52% of global income"
         },
         {
+            title: "Intergenerational Mobility",
+            icon: <Activity size={28} />,
+            content: "Measures the likelihood of a person moving to a different income quintile than their parents. Low mobility often precedes high entrenched inequality.",
+            stat: "Birth as Destiny",
+            statLabel: "Mobility Access Risk"
+        },
+        {
             title: "Income Share: Top vs Bottom",
             icon: <PieChart size={28} />,
             content: "By comparing the income share held by the richest 10% against the poorest 10%, we uncover the real concentration of wealth and social polarity in nations.",
