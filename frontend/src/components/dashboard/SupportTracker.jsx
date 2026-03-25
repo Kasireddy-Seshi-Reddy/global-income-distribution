@@ -34,6 +34,8 @@ const SupportTracker = () => {
         fetchMyQueries();
     }, [token]);
 
+    if (!token) return null;
+
     if (loading) return (
         <div className="support-tracker-container text-center">
             <div className="loading-spinner" style={{ margin: '2rem auto' }}></div>

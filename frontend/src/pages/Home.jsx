@@ -5,6 +5,7 @@ import Insights from '../components/home/Insights';
 import Downloads from '../components/home/Downloads';
 import FAQ from '../components/home/FAQ';
 import Contact from '../components/home/Contact';
+import SupportTracker from '../components/dashboard/SupportTracker';
 
 const Home = () => {
     const location = useLocation();
@@ -62,6 +63,7 @@ const Home = () => {
             <div className="fade-in-section"><Downloads /></div>
             <div className="fade-in-section"><FAQ /></div>
             <div className="fade-in-section"><Contact /></div>
+            <div className="fade-in-section"><SupportTracker /></div>
         </div>
     );
 };
