@@ -285,12 +285,11 @@
 }
 
 .story-header-col h4 {
-    font-size: 1.8rem;
+    font-size: 1.85rem;
+    font-weight: 800; /* Extra bold for visibility */
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #fff, var(--color-text-muted));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fff; /* Solid white for high contrast */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Depth for visibility on glass */
 }
 
 .insight-line-v2 {
