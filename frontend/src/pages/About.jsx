@@ -191,7 +191,7 @@ const About = () => {
                 <div className="indicator-insights-container">
                     <div className="text-center">
                         <h2 className="section-title">
-                            📊 Indicator <span className="gradient-text">Insights</span>
+                            Indicator <span className="gradient-text">Insights</span>
                         </h2>
                         <p className="section-subtitle">
                             A simple, interactive guide to the core economic indicators used in our global research.
