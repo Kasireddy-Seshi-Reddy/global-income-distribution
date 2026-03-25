@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
-import { generateToken } from '../middleware/auth.js';
+import { generateToken, verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 const ADMIN_EMAIL = 'infosysteam@gmail.com';
