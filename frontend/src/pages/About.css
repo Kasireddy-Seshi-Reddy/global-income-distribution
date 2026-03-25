@@ -167,7 +167,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .storytelling-header .section-title {
@@ -177,7 +177,7 @@
 .storytelling-tagline {
     font-size: 1.4rem;
     color: var(--color-text-muted);
-    margin: -0.25rem 0 2.5rem; /* Tighter vertical alignment */
+    margin: 0 0 2rem;
     font-weight: 500;
 }
 
@@ -187,15 +187,19 @@
     top: 100px;
     z-index: 50;
     max-width: 800px;
-    margin: 0 auto 4rem;
+    margin: 0 auto;
     opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
     pointer-events: none;
 }
 
 .insight-highlight-bar.active {
     opacity: 1;
+    height: auto;
+    margin: 1.5rem auto 3rem;
     transform: translateY(0);
     pointer-events: auto;
 }
