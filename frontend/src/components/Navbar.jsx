@@ -18,7 +18,7 @@ const Navbar = ({ isInitialLoad }) => {
     const [offsetReady, setOffsetReady] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const location = useLocation();
-    const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+    const isAuthPage = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/forgot-password';
 
     useEffect(() => {
         const handleScroll = () => {
