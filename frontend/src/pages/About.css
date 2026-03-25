@@ -156,7 +156,7 @@
     color: var(--color-accent);
 }
 
-/* Indicator Storytelling Section */
+/* Vertical Storytelling Stack */
 .indicator-storytelling-container {
     margin-top: 10rem;
     padding-bottom: 6rem;
@@ -169,13 +169,13 @@
     font-weight: 500;
 }
 
-/* Insight Highlight Bar */
+/* Insight Highlight Bar (Sticky) */
 .insight-highlight-bar {
     position: sticky;
     top: 100px;
     z-index: 50;
     max-width: 800px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 4rem;
     opacity: 0;
     transform: translateY(-20px);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -189,7 +189,7 @@
 }
 
 .highlight-content {
-    background: linear-gradient(90deg, rgba(59, 91, 219, 0.9), rgba(132, 94, 247, 0.9));
+    background: linear-gradient(90deg, rgba(59, 91, 219, 0.95), rgba(132, 94, 247, 0.95));
     color: #fff;
     padding: 1.25rem 2.5rem;
     border-radius: 50px;
@@ -202,279 +202,229 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.highlight-icon {
-    animation: pulseGlow 1.5s infinite alternate;
-}
-
-@keyframes pulseGlow {
-    from { filter: drop-shadow(0 0 2px #fff); }
-    to { filter: drop-shadow(0 0 12px #fff); }
-}
-
-/* Horizontal Track */
-.insight-track-container {
-    padding: 2rem 0;
-    margin: 0 -2rem;
-}
-
-.insight-track {
-    display: flex;
-    overflow-x: auto;
-    padding: 2rem;
-    gap: 2.5rem;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-}
-
-.insight-track::-webkit-scrollbar {
-    display: none;
-}
-
-.insight-card {
-    flex: 0 0 420px;
-    scroll-snap-align: center;
-    padding: 2.5rem;
+.story-stack {
     display: flex;
     flex-direction: column;
-    height: 600px;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.story-block {
+    padding: 3rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     border: 1px solid var(--color-glass-border);
-    transition: all 0.5s var(--transition-normal);
     position: relative;
-    user-select: none;
+    overflow: hidden;
 }
 
-.insight-card:hover {
-    transform: translateY(-15px) scale(1.02);
+.story-block:hover {
+    transform: scale(1.01);
     border-color: var(--color-primary);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
 }
 
-.insight-card.selected {
-    border: 2px solid var(--color-primary);
+.story-block.selected {
+    border: 2.5px solid var(--color-primary);
     background: rgba(var(--color-primary-rgb), 0.05);
-    box-shadow: 0 0 30px var(--color-primary-glow);
+    box-shadow: 0 0 35px var(--color-primary-glow);
 }
 
-.card-selection-indicator {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.6;
+.story-block-inner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
 }
 
-.card-icon-main {
-    width: 60px;
-    height: 60px;
+/* Header Column */
+.story-header-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-icon-wrapper {
+    width: 70px;
+    height: 70px;
     background: var(--color-glass-hover);
-    border-radius: 16px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
     color: var(--color-primary);
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.insight-card.green .card-icon-main { color: #38d9a9; }
-.insight-card.red .card-icon-main { color: #ff6b6b; }
-.insight-card.yellow .card-icon-main { color: #fcc419; }
+.story-block.green .story-icon-wrapper { color: #38d9a9; }
+.story-block.red .story-icon-wrapper { color: #ff6b6b; }
+.story-block.yellow .story-icon-wrapper { color: #fcc419; }
 
-.card-title-main h4 {
-    font-size: 1.5rem;
+.story-id-badge {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
     margin-bottom: 0.75rem;
+    opacity: 0.5;
+}
+
+.story-header-col h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
     background: linear-gradient(135deg, #fff, var(--color-text-muted));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.insight-line {
+.insight-line-v2 {
     font-size: 1.1rem;
-    color: var(--color-text-muted);
     font-style: italic;
+    color: var(--color-text-muted);
     line-height: 1.6;
-    margin-bottom: 2rem;
-}
-
-/* Mini Visual */
-.card-visual-strip {
     margin-bottom: 2.5rem;
 }
 
-.visual-bar-bg {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
+/* Content Column */
+.story-content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.content-segment h5 {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
     margin-bottom: 0.75rem;
 }
 
-.visual-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    transition: width 1s ease-out 0.3s;
-}
-
-.insight-card.green .visual-bar-fill { background: linear-gradient(90deg, #38d9a9, #0ca678); }
-.insight-card.red .visual-bar-fill { background: linear-gradient(90deg, #ff6b6b, #fa5252); }
-
-.visual-label {
-    font-size: 0.75rem;
+.content-segment p {
+    font-size: 1.1rem;
+    line-height: 1.7;
     color: var(--color-text-muted);
-    letter-spacing: 0.5px;
 }
 
-.card-short-expl {
+.content-segment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.reveals-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.reveals-box li {
     font-size: 0.95rem;
     color: var(--color-text-muted);
-    line-height: 1.7;
-    margin-bottom: auto;
-}
-
-.card-actions {
-    margin-bottom: 2.5rem;
-}
-
-.btn-story-more {
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    text-transform: uppercase;
-    transition: gap 0.3s ease;
 }
 
-.btn-story-more:hover {
+.list-icon { color: var(--color-accent); }
+
+.reality-bubble {
+    background: rgba(255, 107, 107, 0.05);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
     gap: 1.25rem;
+    align-items: flex-start;
 }
 
-/* Scale Layer */
-.interpretation-scale {
+.reality-bubble p {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.reality-bubble svg {
+    color: #ff6b6b;
+    flex-shrink: 0;
+}
+
+/* Interpretation Bar */
+.interpretation-bar-v2 {
     display: flex;
     justify-content: space-between;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-glass-border);
+    padding: 1.25rem 2rem;
+    background: var(--color-glass-hover);
+    border-radius: 12px;
 }
 
-.scale-point {
-    display: flex;
-    flex-direction: column;
-}
-
-.scale-label {
-    font-size: 0.65rem;
+.interpret-point strong {
+    font-size: 0.8rem;
+    color: var(--color-primary);
     text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: 0.25rem;
+    margin-right: 0.75rem;
 }
 
-.scale-msg {
-    font-size: 0.85rem;
-    font-weight: 600;
+.interpret-point span {
+    font-size: 0.95rem;
     color: var(--color-text);
 }
 
-/* Immersive Modal V2 */
-.modal-insight-quote {
-    font-size: 1.4rem;
-    font-style: italic;
+/* Visual Bar V2 */
+.visual-bar-bg-v2 {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.visual-bar-fill-v2 {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transition: width 1.5s ease-out 0.5s;
+}
+
+.story-block.green .visual-bar-fill-v2 { background: linear-gradient(90deg, #38d9a9, #0ca678); }
+.story-block.red .visual-bar-fill-v2 { background: linear-gradient(90deg, #ff6b6b, #fa5252); }
+
+.visual-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
     color: var(--color-text-muted);
 }
 
-.modal-section-v2 {
-    margin-bottom: 3rem;
-}
-
-.modal-section-v2 h5 {
-    color: var(--color-accent);
-    margin-bottom: 1.5rem;
-    letter-spacing: 2px;
-}
-
-.reality-card {
-    background: rgba(255, 107, 107, 0.05);
-    border: 1px solid rgba(255, 107, 107, 0.2);
-    padding: 2rem;
-    border-radius: 16px;
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.reality-icon { color: #ff6b6b; }
-
-.modal-grid-v2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 3rem;
-}
-
-.modal-info-col h5 {
-    margin-bottom: 1.25rem;
-}
-
-.modal-info-col ul li {
-    margin-bottom: 1rem;
-    color: var(--color-text-muted);
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.modal-info-col ul li::before {
-    content: '🎯';
-    position: absolute;
-    left: 0;
-    font-size: 0.8rem;
-}
-
-.influence-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.interpretation-summary {
-    background: var(--color-glass-hover);
-    padding: 1.5rem 3rem;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    font-size: 1rem;
-}
-
-.interpretation-summary .divider {
-    color: var(--color-glass-border);
-}
-
-@media (max-width: 900px) {
-    .insight-card {
-        flex: 0 0 320px;
-        height: 550px;
+@media (max-width: 1100px) {
+    .story-block-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
-    
-    .modal-grid-v2 {
+
+    .story-header-col {
+        border-bottom: 1px solid var(--color-glass-border);
+        padding-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-segment-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .story-block {
+        padding: 2rem;
+    }
+
+    .interpretation-bar-v2 {
+        flex-direction: column;
+        gap: 1rem;
     }
 }
 
 @media (max-width: 600px) {
-    .insight-card {
-        flex: 0 0 85vw;
-    }
-    
     .highlight-content {
         padding: 1rem 1.5rem;
         font-size: 0.85rem;
-    }
-
-    .modal-title-area h3 {
-        font-size: 1.6rem;
     }
 }
