@@ -261,7 +261,7 @@ const About = () => {
                 </div>
 
                 <div className="indicator-storytelling-container">
-                    <div className="text-center">
+                    <div className="storytelling-header">
                         <div className="section-header-icon">🌐</div>
                         <h2 className="section-title">
                             Indicator <span className="gradient-text">Insights</span>
