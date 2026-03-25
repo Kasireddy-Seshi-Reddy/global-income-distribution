@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { HelpCircle, PieChart, TrendingUp, TrendingDown, Scale, BarChart2, Globe, Activity } from 'lucide-react';
+import { HelpCircle, PieChart, TrendingUp, TrendingDown, Scale, BarChart2, Globe, Activity, X } from 'lucide-react';
 import './About.css';
 
 const About = () => {
     const [activeCard, setActiveCard] = useState(0);
-    const [expandedIndicator, setExpandedIndicator] = useState(null);
+    const [selectedIndicator, setSelectedIndicator] = useState(null);
 
     const concepts = [
         {
@@ -202,8 +202,8 @@ const About = () => {
                         {indicators.map((item, idx) => (
                             <div
                                 key={idx}
-                                className={`indicator-card glass-panel ${item.color} ${expandedIndicator === idx ? 'expanded' : ''}`}
-                                onClick={() => setExpandedIndicator(expandedIndicator === idx ? null : idx)}
+                                className={`indicator-card glass-panel ${item.color}`}
+                                onClick={() => setSelectedIndicator(item)}
                             >
                                 <div className="indicator-header">
                                     <div className="indicator-icon-wrapper">
@@ -215,40 +215,63 @@ const About = () => {
                                     </div>
                                 </div>
 
-                                <div className="indicator-expand-content">
-                                    <div className="expl-section">
-                                        <h5>Details</h5>
-                                        <p>{item.detailedExpl}</p>
-                                    </div>
-
-                                    <div className="expl-grid">
-                                        <div className="expl-col">
-                                            <h5>Why It Matters</h5>
-                                            <ul>
-                                                {item.whyItMatters.map((note, i) => <li key={i}>{note}</li>)}
-                                            </ul>
-                                        </div>
-                                        <div className="expl-col">
-                                            <h5>How to Interpret</h5>
-                                            <p className="interpret-text">{item.howToInterpret}</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="real-world-insight">
-                                        <span className="insight-label">Real-World Insight:</span> {item.insight}
-                                    </div>
-                                </div>
-
                                 <div className="indicator-footer">
-                                    <span className="learn-more-btn">
-                                        {expandedIndicator === idx ? 'Show Less ─' : 'Learn More +'}
-                                    </span>
+                                    <span className="learn-more-btn">Learn More +</span>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+
+            {/* Premium Indicator Modal */}
+            {selectedIndicator && (
+                <div className="indicator-modal-overlay fade-in" onClick={() => setSelectedIndicator(null)}>
+                    <div className="indicator-modal-content glass-panel bounce-in" onClick={e => e.stopPropagation()}>
+                        <button className="modal-close-btn" onClick={() => setSelectedIndicator(null)}>
+                            <X size={24} />
+                        </button>
+                        
+                        <div className="modal-header">
+                            <div className={`modal-icon-wrapper ${selectedIndicator.color}`}>
+                                {selectedIndicator.icon}
+                            </div>
+                            <div className="modal-title-area">
+                                <h3>{selectedIndicator.title}</h3>
+                                <div className={`status-pill ${selectedIndicator.color}`}>
+                                    {selectedIndicator.color === 'green' ? 'Positive growth' : selectedIndicator.color === 'red' ? 'High risk' : 'Neutral factor'}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="modal-body">
+                            <div className="modal-description">
+                                <h5>What is it?</h5>
+                                <p>{selectedIndicator.detailedExpl}</p>
+                            </div>
+
+                            <div className="modal-info-grid">
+                                <div className="info-section">
+                                    <h5>Why It Matters</h5>
+                                    <ul>
+                                        {selectedIndicator.whyItMatters.map((note, i) => <li key={i}>{note}</li>)}
+                                    </ul>
+                                </div>
+                                <div className="info-section">
+                                    <h5>How to Interpret</h5>
+                                    <div className="interpret-box">
+                                        <p>{selectedIndicator.howToInterpret}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="modal-footer-insight">
+                                <strong>Real-World Insight:</strong> {selectedIndicator.insight}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };
