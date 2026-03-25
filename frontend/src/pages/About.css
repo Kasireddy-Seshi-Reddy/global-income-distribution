@@ -156,16 +156,23 @@
     color: var(--color-accent);
 }
 
-/* Vertical Storytelling Stack */
+/* Indicator Storytelling Section */
 .indicator-storytelling-container {
     margin-top: 10rem;
     padding-bottom: 6rem;
 }
 
+.section-header-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px var(--color-primary-glow));
+}
+
 .storytelling-tagline {
     font-size: 1.4rem;
     color: var(--color-text-muted);
-    margin: -0.5rem 0 2.5rem; /* Negative top margin to bring it closer to title */
+    margin: -0.25rem 0 2.5rem; /* Tighter vertical alignment */
     font-weight: 500;
 }
 

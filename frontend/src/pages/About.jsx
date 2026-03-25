@@ -262,8 +262,9 @@ const About = () => {
 
                 <div className="indicator-storytelling-container">
                     <div className="text-center">
+                        <div className="section-header-icon">🌐</div>
                         <h2 className="section-title">
-                            🌐 Indicator <span className="gradient-text">Insights</span>
+                            Indicator <span className="gradient-text">Insights</span>
                         </h2>
                         <h3 className="storytelling-tagline">Understanding the Building Blocks of Inequality</h3>
                         <p className="section-subtitle">
