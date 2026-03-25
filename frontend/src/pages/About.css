@@ -163,9 +163,9 @@
 }
 
 .storytelling-tagline {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--color-text-muted);
-    margin: 1rem 0 2rem;
+    margin: -0.5rem 0 2.5rem; /* Negative top margin to bring it closer to title */
     font-weight: 500;
 }
 
