@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { X, User, Save, RotateCcw, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { API_URL } from '../config';
 import './ProfileModal.css';
 
 const ProfileModal = ({ isOpen, onClose }) => {
