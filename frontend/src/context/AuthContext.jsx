@@ -5,20 +5,17 @@ export const AuthContext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState(null);
+    // Synchronous initialization to prevent 'Guest Flash'
     const [token, setToken] = useState(localStorage.getItem('global_ineq_token'));
+    const [user, setUser] = useState(() => {
+        const saved = localStorage.getItem('global_ineq_user');
+        try { return saved ? JSON.parse(saved) : null; } catch { return null; }
+    });
+    const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('global_ineq_token'));
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const storedToken = localStorage.getItem('global_ineq_token');
-        const storedUser = localStorage.getItem('global_ineq_user');
-
-        if (storedToken && storedUser) {
-            setIsAuthenticated(true);
-            setToken(storedToken);
-            setUser(JSON.parse(storedUser));
-        }
+        // Just handle the initial hydration check
         setLoading(false);
     }, []);
 
@@ -67,6 +64,11 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
 
             if (response.ok && data.success) {
+                localStorage.setItem('global_ineq_token', data.token);
+                localStorage.setItem('global_ineq_user', JSON.stringify(data.user));
+                setIsAuthenticated(true);
+                setToken(data.token);
+                setUser(data.user);
                 return { success: true };
             }
             return { success: false, message: data.message || 'Registration failed' };

@@ -35,7 +35,27 @@ router.post('/signup', async (req, res) => {
             VALUES (?, ?, ?, ?)
         `, [fullName, email, passwordHash, assignedRole]);
 
-        res.status(201).json({ success: true, message: 'User registered successfully' });
+        const newUser = {
+            UserID: result.lastID,
+            FullName: fullName,
+            Email: email,
+            Role: assignedRole
+        };
+
+        // Generate token for auto-login
+        const token = generateToken(newUser);
+
+        res.status(201).json({ 
+            success: true, 
+            message: 'User registered successfully',
+            token,
+            user: {
+                id: newUser.UserID,
+                name: newUser.FullName,
+                email: newUser.Email,
+                role: newUser.Role
+            }
+        });
     } catch (error) {
         console.error('Signup error:', error);
         res.status(500).json({ success: false, message: 'Server error during registration' });

@@ -57,7 +57,7 @@ const SignUp = () => {
                 setIsSubmitting(false);
 
                 if (response.success) {
-                    navigate('/login');
+                    navigate('/');
                 } else {
                     setErrors({ email: response.message });
                     document.querySelector('.auth-form').classList.add('error-shake');
