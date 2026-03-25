@@ -156,6 +156,172 @@
     color: var(--color-accent);
 }
 
+/* Indicator Insights Section */
+.indicator-insights-container {
+    margin-top: 8rem;
+    padding-bottom: 4rem;
+}
+
+.indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.indicator-card {
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    border: 1px solid var(--color-glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.indicator-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary-glow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.indicator-header {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.indicator-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background: var(--color-glass);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.indicator-header-text h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+.short-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+/* Expansion Logic */
+.indicator-expand-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.indicator-card.expanded .indicator-expand-content {
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-glass-border);
+}
+
+.expl-section {
+    margin-bottom: 1.5rem;
+}
+
+.expl-section h5, .expl-col h5 {
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+}
+
+.expl-section p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.expl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.expl-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.expl-col li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.25rem;
+    position: relative;
+    color: var(--color-text-muted);
+}
+
+.expl-col li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+.interpret-text {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    font-style: italic;
+    background: rgba(var(--color-primary-rgb), 0.05);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.real-world-insight {
+    background: var(--color-glass);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--color-accent);
+}
+
+.insight-label {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.indicator-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    text-align: right;
+}
+
+.learn-more-btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+/* Color Coding */
+.indicator-card.green .indicator-icon-wrapper { color: #38d9a9; }
+.indicator-card.green:hover { border-color: #38d9a9; box-shadow: 0 5px 15px rgba(56, 217, 169, 0.2); }
+
+.indicator-card.red .indicator-icon-wrapper { color: #ff6b6b; }
+.indicator-card.red:hover { border-color: #ff6b6b; box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2); }
+
+.indicator-card.yellow .indicator-icon-wrapper { color: #fcc419; }
+.indicator-card.yellow:hover { border-color: #fcc419; box-shadow: 0 5px 15px rgba(252, 196, 25, 0.2); }
+
 @media (max-width: 900px) {
     .about-grid {
         grid-template-columns: 1fr;
@@ -164,5 +330,17 @@
     .concept-tab.active,
     .concept-tab:hover {
         transform: translateY(-5px);
+    }
+}
+
+@media (max-width: 600px) {
+    .expl-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .indicator-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
