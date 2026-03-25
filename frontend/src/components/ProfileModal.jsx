@@ -17,7 +17,12 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
+    const [showSecurity, setShowSecurity] = useState(false);
     const [formData, setFormData] = useState({ ...user });
+    const [passwords, setPasswords] = useState({ current: '', new: '', confirm: '' });
+    const [passError, setPassError] = useState('');
+    const [passSuccess, setPassSuccess] = useState('');
+    const [isUpdatingPass, setIsUpdatingPass] = useState(false);
 
     // Update local state when auth data loads
     useEffect(() => {
@@ -62,6 +67,52 @@ const ProfileModal = ({ isOpen, onClose }) => {
         setIsEditing(false);
     };
 
+    const handlePasswordChange = async (e) => {
+        e.preventDefault();
+        if (passwords.new !== passwords.confirm) {
+            setPassError('New passwords do not match');
+            return;
+        }
+        if (passwords.new.length < 6) {
+            setPassError('New password must be at least 6 characters');
+            return;
+        }
+
+        setIsUpdatingPass(true);
+        setPassError('');
+        setPassSuccess('');
+
+        try {
+            const token = localStorage.getItem('global_ineq_token');
+            const res = await fetch(`${API_URL}/auth/change-password`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    currentPassword: passwords.current,
+                    newPassword: passwords.new
+                })
+            });
+            const data = await res.json();
+            if (data.success) {
+                setPassSuccess('Password updated successfully!');
+                setPasswords({ current: '', new: '', confirm: '' });
+                setTimeout(() => {
+                    setPassSuccess('');
+                    setShowSecurity(false);
+                }, 2000);
+            } else {
+                setPassError(data.message);
+            }
+        } catch (err) {
+            setPassError('Server connection error');
+        } finally {
+            setIsUpdatingPass(false);
+        }
+    };
+
     return (
         <div className="profile-modal-overlay" onClick={onClose}>
             <div className="profile-modal" onClick={e => e.stopPropagation()}>
@@ -84,66 +135,127 @@ const ProfileModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="profile-form">
-                    <div className="form-group">
-                        <label>Full Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            disabled={!isEditing}
-                        />
+                    <div className="profile-tabs" style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                        <button 
+                            className={`tab-btn ${!showSecurity ? 'active' : ''}`} 
+                            onClick={() => setShowSecurity(false)}
+                            style={{ padding: '0.5rem 1rem', background: 'none', border: 'none', color: !showSecurity ? 'var(--color-primary)' : '#fff', borderBottom: !showSecurity ? '2px solid var(--color-primary)' : 'none', cursor: 'pointer' }}
+                        >
+                            Profile
+                        </button>
+                        <button 
+                            className={`tab-btn ${showSecurity ? 'active' : ''}`} 
+                            onClick={() => setShowSecurity(true)}
+                            style={{ padding: '0.5rem 1rem', background: 'none', border: 'none', color: showSecurity ? 'var(--color-primary)' : '#fff', borderBottom: showSecurity ? '2px solid var(--color-primary)' : 'none', cursor: 'pointer' }}
+                        >
+                            Security
+                        </button>
                     </div>
 
-                    <div className="form-group">
-                        <label>Email Address</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            disabled={!isEditing}
-                        />
-                    </div>
+                    {!showSecurity ? (
+                        <>
+                            <div className="form-group">
+                                <label>Full Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    disabled={!isEditing}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Organization</label>
-                        <input
-                            type="text"
-                            name="organization"
-                            value={formData.organization}
-                            onChange={handleChange}
-                            disabled={!isEditing}
-                        />
-                    </div>
+                            <div className="form-group">
+                                <label>Email Address</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    disabled={!isEditing}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Role</label>
-                        <input
-                            type="text"
-                            name="role"
-                            value={formData.role}
-                            onChange={handleChange}
-                            disabled={!isEditing}
-                        />
-                    </div>
+                            <div className="form-group">
+                                <label>Organization</label>
+                                <input
+                                    type="text"
+                                    name="organization"
+                                    value={formData.organization}
+                                    onChange={handleChange}
+                                    disabled={!isEditing}
+                                />
+                            </div>
 
-                    <div className="profile-actions">
-                        {isEditing ? (
-                            <>
-                                <button className="btn btn-outline" onClick={handleCancel}>
-                                    <RotateCcw size={18} /> Cancel
-                                </button>
-                                <button className="btn btn-primary" onClick={handleSave}>
-                                    <Save size={18} /> Save Changes
-                                </button>
-                            </>
-                        ) : (
-                            <button className="btn btn-primary" onClick={() => setIsEditing(true)}>
-                                Edit Profile
+                            <div className="form-group">
+                                <label>Role</label>
+                                <input
+                                    type="text"
+                                    name="role"
+                                    value={formData.role}
+                                    onChange={handleChange}
+                                    disabled={!isEditing}
+                                />
+                            </div>
+
+                            <div className="profile-actions">
+                                {isEditing ? (
+                                    <>
+                                        <button className="btn btn-outline" onClick={handleCancel}>
+                                            <RotateCcw size={18} /> Cancel
+                                        </button>
+                                        <button className="btn btn-primary" onClick={handleSave}>
+                                            <Save size={18} /> Save Changes
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button className="btn btn-primary" onClick={() => setIsEditing(true)}>
+                                        Edit Profile
+                                    </button>
+                                )}
+                            </div>
+                        </>
+                    ) : (
+                        <form onSubmit={handlePasswordChange} className="security-form">
+                            <div className="form-group">
+                                <label>Current Password</label>
+                                <input
+                                    type="password"
+                                    value={passwords.current}
+                                    onChange={(e) => setPasswords({...passwords, current: e.target.value})}
+                                    placeholder="••••••••"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>New Password</label>
+                                <input
+                                    type="password"
+                                    value={passwords.new}
+                                    onChange={(e) => setPasswords({...passwords, new: e.target.value})}
+                                    placeholder="••••••••"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Confirm New Password</label>
+                                <input
+                                    type="password"
+                                    value={passwords.confirm}
+                                    onChange={(e) => setPasswords({...passwords, confirm: e.target.value})}
+                                    placeholder="••••••••"
+                                    required
+                                />
+                            </div>
+                            
+                            {passError && <p className="error-msg" style={{ color: '#FF6B6B', fontSize: '0.85rem', marginTop: '0.5rem' }}>{passError}</p>}
+                            {passSuccess && <p className="success-msg" style={{ color: 'var(--color-primary)', fontSize: '0.85rem', marginTop: '0.5rem' }}>{passSuccess}</p>}
+
+                            <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }} disabled={isUpdatingPass}>
+                                {isUpdatingPass ? 'Updating...' : 'Update Password'}
                             </button>
-                        )}
-                    </div>
+                        </form>
+                    )}
 
                     {!isEditing && (
                         <button

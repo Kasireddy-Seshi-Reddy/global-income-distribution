@@ -93,6 +93,13 @@ export const initDb = async () => {
         );
     `);
 
+    // Auto-migration for existing databases
+    try {
+        await dbInstance.exec('ALTER TABLE Users ADD COLUMN ResetCode TEXT;');
+    } catch (e) {
+        // Column probably already exists, which is fine
+    }
+
     console.log('Database initialized successfully with all tables.');
     return dbInstance;
 };

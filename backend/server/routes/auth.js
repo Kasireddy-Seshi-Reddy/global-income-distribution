@@ -183,4 +183,41 @@ router.post('/reset-password', async (req, res) => {
     }
 });
 
+// POST /api/auth/change-password (Authenticated Password Update)
+router.post('/change-password', verifyToken, async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    try {
+        const db = req.db;
+        const user = await db.get('SELECT UserID, PasswordHash FROM Users WHERE UserID = ?', [req.user.id]);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        // Verify current password
+        const isMatch = await bcrypt.compare(currentPassword, user.PasswordHash);
+        if (!isMatch) {
+            return res.status(401).json({ success: false, message: 'Current password is incorrect' });
+        }
+
+        // Hash new password
+        const salt = await bcrypt.genSalt(10);
+        const passwordHash = await bcrypt.hash(newPassword, salt);
+
+        // Update
+        await db.run('UPDATE Users SET PasswordHash = ? WHERE UserID = ?', [passwordHash, user.UserID]);
+
+        // Log
+        await db.run(`
+            INSERT INTO UserModerationLogs (UserID, ActionTaken, Reason, AdminEmail, Notes)
+            VALUES (?, 'Password Changed', 'User changed password via Profile Settings', 'System', 'Direct Action')
+        `, [user.UserID]);
+
+        res.status(200).json({ success: true, message: 'Password updated successfully' });
+    } catch (error) {
+        console.error('Change password error:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
 export default router;
