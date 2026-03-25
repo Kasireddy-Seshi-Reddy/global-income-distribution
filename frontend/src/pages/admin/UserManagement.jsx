@@ -47,6 +47,35 @@ const UserManagement = () => {
         }
     };
 
+    const handleResetPassword = async (userId) => {
+        const newPassword = window.prompt("Enter new password for this user:");
+        if (!newPassword || newPassword.length < 6) {
+            alert("Password must be at least 6 characters.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/admin/users/${userId}/reset-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ newPassword })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert("Password reset successfully!");
+            } else {
+                alert("Error: " + data.message);
+            }
+        } catch (error) {
+            console.error("Reset password failed", error);
+            alert("Failed to connect to server.");
+        }
+    };
+
     if (loading) return <div>Loading Users...</div>;
 
     return (
@@ -97,6 +126,13 @@ const UserManagement = () => {
                                             className="action-btn"
                                             title="Restore User"
                                             onClick={() => handleAction(user.UserID, 'Restore')}
+                                            disabled={user.Role === 'Admin'}
+                                        ><RefreshCw size={16} /></button>
+                                        <button
+                                            className="action-btn"
+                                            title="Reset Password"
+                                            style={{ color: 'var(--color-primary)' }}
+                                            onClick={() => handleResetPassword(user.UserID)}
                                             disabled={user.Role === 'Admin'}
                                         ><RefreshCw size={16} /></button>
                                     </div>

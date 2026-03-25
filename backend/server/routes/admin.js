@@ -15,9 +15,7 @@ router.get('/stats', async (req, res) => {
         const avgSessionTime = await db.get('SELECT AVG(SessionDuration) as avgTime FROM UserSessions WHERE SessionDuration IS NOT NULL');
         const active24hrs = await db.get(`SELECT COUNT(*) as count FROM Users WHERE LastActiveTimestamp >= datetime('now', '-15 minutes')`);
 
-        // Mocking some complex metrics for the overview
         const mostVisitedRow = await db.get(`SELECT PageName, COUNT(*) as visits FROM PageActivity GROUP BY PageName ORDER BY visits DESC LIMIT 1`);
-
         const totalQueries = await db.get('SELECT COUNT(*) as count FROM UserQueries');
 
         res.status(200).json({
@@ -60,23 +58,44 @@ router.post('/users/:id/moderate', async (req, res) => {
         const { action, reason, duration, notes } = req.body;
         const db = req.db;
 
-        // Define new status mapping
         let newStatus = 'Active';
         if (action === 'Ban') newStatus = 'Banned';
         if (action === 'Suspend') newStatus = 'Suspended';
 
-        // Log the action
         await db.run(`
             INSERT INTO UserModerationLogs (UserID, ActionTaken, Reason, AdminEmail, Duration, Notes)
             VALUES (?, ?, ?, ?, ?, ?)
         `, [id, action, reason, req.user.email, duration, notes]);
 
-        // Update user status
         await db.run(`UPDATE Users SET AccountStatus = ? WHERE UserID = ?`, [newStatus, id]);
 
         res.status(200).json({ success: true, message: `${action} successful against user` });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Failed to moderate user' });
+    }
+});
+
+// POST /api/admin/users/:id/reset-password
+router.post('/users/:id/reset-password', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { newPassword } = req.body;
+        const db = req.db;
+        
+        const bcrypt = await import('bcryptjs');
+        const hashedPassword = await bcrypt.default.hash(newPassword, 10);
+
+        await db.run('UPDATE Users SET Password = ? WHERE UserID = ?', [hashedPassword, id]);
+
+        await db.run(`
+            INSERT INTO UserModerationLogs (UserID, ActionTaken, Reason, AdminEmail, Notes)
+            VALUES (?, 'Password Reset', 'Admin manually reset password', ?, 'User requested via Forgot Password flow')
+        `, [id, req.user.email]);
+
+        res.status(200).json({ success: true, message: 'User password updated successfully.' });
+    } catch (error) {
+        console.error('Admin password reset error:', error);
+        res.status(500).json({ success: false, message: 'Failed to reset password.' });
     }
 });
 
@@ -105,7 +124,6 @@ router.post('/queries/:id/resolve', async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to resolve query' });
     }
 });
-
 
 // GET /api/admin/sessions
 router.get('/sessions', async (req, res) => {

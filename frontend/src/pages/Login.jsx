@@ -89,7 +89,7 @@ const Login = () => {
                         <div className={`form-control ${errors.password ? 'has-error' : ''}`}>
                             <div className="label-row">
                                 <label>Password</label>
-                                <a href="#" className="forgot-link">Forgot Password?</a>
+                                <Link to="/forgot-password" style={{ fontSize: '0.85rem', color: 'var(--color-primary)', textDecoration: 'none' }}>Forgot Password?</Link>
                             </div>
                             <div className="input-with-icon">
                                 <Lock className="input-icon" size={18} />

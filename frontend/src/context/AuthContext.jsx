@@ -7,14 +7,16 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('global_ineq_token'));
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('global_ineq_token');
+        const storedToken = localStorage.getItem('global_ineq_token');
         const storedUser = localStorage.getItem('global_ineq_user');
 
-        if (token && storedUser) {
+        if (storedToken && storedUser) {
             setIsAuthenticated(true);
+            setToken(storedToken);
             setUser(JSON.parse(storedUser));
         }
         setLoading(false);
@@ -33,6 +35,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('global_ineq_token', data.token);
                 localStorage.setItem('global_ineq_user', JSON.stringify(data.user));
                 setIsAuthenticated(true);
+                setToken(data.token);
                 setUser(data.user);
 
                 // Start Session Tracking
@@ -88,11 +91,12 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('global_ineq_token');
         localStorage.removeItem('global_ineq_user');
         setIsAuthenticated(false);
+        setToken(null);
         setUser(null);
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, loading, login, logout, register, token: localStorage.getItem('global_ineq_token') }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, loading, login, logout, register, token }}>
             {children}
         </AuthContext.Provider>
     );
