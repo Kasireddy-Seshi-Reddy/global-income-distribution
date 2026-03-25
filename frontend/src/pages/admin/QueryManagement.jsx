@@ -78,7 +78,13 @@ const QueryManagement = () => {
                                 </td>
                                 <td>{query.Subject}</td>
                                 <td style={{ maxWidth: '400px', whiteSpace: 'pre-wrap', fontSize: '0.9rem', lineHeight: '1.5', padding: '1rem' }}>
-                                    {query.Message}
+                                    <div className="user-message">{query.Message}</div>
+                                    {query.AdminResponse && (
+                                        <div className="admin-reply" style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(56, 217, 169, 0.1)', borderLeft: '3px solid #38D9A9', borderRadius: '4px' }}>
+                                            <strong style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#38D9A9', display: 'block', marginBottom: '0.25rem' }}>Admin Response:</strong>
+                                            {query.AdminResponse}
+                                        </div>
+                                    )}
                                 </td>
                                 <td>
                                     <span className={`status-badge status-${query.ResponseStatus === 'Responded' ? 'active' : 'suspended'}`}>
