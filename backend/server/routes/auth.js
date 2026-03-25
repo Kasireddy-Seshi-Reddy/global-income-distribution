@@ -118,4 +118,69 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// POST /api/auth/forgot-password (Generate Reset Code)
+router.post('/forgot-password', async (req, res) => {
+    const { email } = req.body;
+    try {
+        const db = req.db;
+        const user = await db.get('SELECT UserID, FullName FROM Users WHERE Email = ?', [email]);
+        
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'No account found with this email' });
+        }
+
+        // Generate 6-digit code
+        const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+        
+        // Save code to user record
+        await db.run('UPDATE Users SET ResetCode = ? WHERE UserID = ?', [resetCode, user.UserID]);
+
+        // Also log as a support ticket (for admin visibility)
+        await db.run(`
+            INSERT INTO UserQueries (UserID, UserName, UserEmail, Subject, Message, QueryCategory, ResponseStatus)
+            VALUES (?, ?, ?, 'Password Reset Request', ?, 'High Priority', 'Pending')
+        `, [user.UserID, user.FullName, email, `System generated reset code: ${resetCode}`]);
+
+        res.status(200).json({ 
+            success: true, 
+            message: 'A verification code has been generated.', 
+            demoCode: resetCode // Returning code directly for demo purposes
+        });
+    } catch (error) {
+        console.error('Forgot password error:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// POST /api/auth/reset-password (Verify Code & Update Password)
+router.post('/reset-password', async (req, res) => {
+    const { email, resetCode, newPassword } = req.body;
+    try {
+        const db = req.db;
+        const user = await db.get('SELECT UserID, ResetCode FROM Users WHERE Email = ?', [email]);
+
+        if (!user || user.ResetCode !== resetCode) {
+            return res.status(400).json({ success: false, message: 'Invalid email or verification code' });
+        }
+
+        // Hash new password
+        const salt = await bcrypt.genSalt(10);
+        const passwordHash = await bcrypt.hash(newPassword, salt);
+
+        // Update password and clear reset code
+        await db.run('UPDATE Users SET PasswordHash = ?, ResetCode = NULL WHERE UserID = ?', [passwordHash, user.UserID]);
+
+        // Log the action
+        await db.run(`
+            INSERT INTO UserModerationLogs (UserID, ActionTaken, Reason, AdminEmail, Notes)
+            VALUES (?, 'Self-Service Reset', 'User reset password via verification code', 'System', 'Automated Flow')
+        `, [user.UserID]);
+
+        res.status(200).json({ success: true, message: 'Password reset successfully' });
+    } catch (error) {
+        console.error('Reset password error:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
 export default router;

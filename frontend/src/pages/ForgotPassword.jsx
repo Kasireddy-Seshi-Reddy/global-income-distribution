@@ -1,19 +1,55 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, ArrowLeft, Send, Globe } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Mail, ArrowLeft, Send, Globe, Lock, ShieldCheck } from 'lucide-react';
 import { API_URL } from '../config';
 import './Auth.css';
 
 const ForgotPassword = () => {
+    const [step, setStep] = useState(1); // 1: Request, 2: Reset
     const [email, setEmail] = useState('');
+    const [resetCode, setResetCode] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [demoCode, setDemoCode] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleRequestCode = async (e) => {
         e.preventDefault();
-        if (!email) {
-            setError('Please enter your email address.');
+        setIsSubmitting(true);
+        setError('');
+        
+        try {
+            const res = await fetch(`${API_URL}/auth/forgot-password`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (data.success) {
+                setDemoCode(data.demoCode);
+                setStep(2);
+                setSuccess('Verification code generated successfully.');
+            } else {
+                setError(data.message);
+            }
+        } catch (err) {
+            setError('Server connection error.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleResetPassword = async (e) => {
+        e.preventDefault();
+        if (newPassword !== confirmPassword) {
+            setError('Passwords do not match.');
+            return;
+        }
+        if (newPassword.length < 6) {
+            setError('Password must be at least 6 characters.');
             return;
         }
 
@@ -21,26 +57,20 @@ const ForgotPassword = () => {
         setError('');
 
         try {
-            // We reuse the Query system to send a high-priority reset request to admins
-            const res = await fetch(`${API_URL}/queries`, {
+            const res = await fetch(`${API_URL}/auth/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: 'Password Recovery System',
-                    email: email,
-                    subject: 'URGENT: Password Reset Request',
-                    message: `USER REQUESTING PASSWORD RESET: ${email}. Please use the Admin User Management panel to reset this researcher's credentials.`
-                })
+                body: JSON.stringify({ email, resetCode, newPassword })
             });
-
             const data = await res.json();
             if (data.success) {
-                setSubmitted(true);
+                setSuccess('Password reset successfully! Redirecting to login...');
+                setTimeout(() => navigate('/login'), 3000);
             } else {
-                setError(data.message || 'Failed to submit request.');
+                setError(data.message);
             }
         } catch (err) {
-            setError('Server connection error. Please try again later.');
+            setError('Server connection error.');
         } finally {
             setIsSubmitting(false);
         }
@@ -56,12 +86,15 @@ const ForgotPassword = () => {
                 <div className="auth-card glass-panel fade-in-up">
                     <div className="auth-header text-center">
                         <span className="gradient-text auth-logo-icon"><Globe size={32} /></span>
-                        <h2>Reset Access</h2>
-                        <p>Lost your credentials? Submit your email and an administrator will reset your access within 24 hours.</p>
+                        <h2>{step === 1 ? 'Reset Access' : 'Set New Password'}</h2>
+                        <p>{step === 1 
+                            ? 'Enter your email to receive a secure recovery code.' 
+                            : 'Enter the 6-digit code and your new password.'}
+                        </p>
                     </div>
 
-                    {!submitted ? (
-                        <form onSubmit={handleSubmit} className="auth-form">
+                    {step === 1 ? (
+                        <form onSubmit={handleRequestCode} className="auth-form">
                             <div className={`form-control ${error ? 'has-error' : ''}`}>
                                 <label>Registered Email</label>
                                 <div className="input-with-icon">
@@ -78,19 +111,69 @@ const ForgotPassword = () => {
                             </div>
 
                             <button type="submit" className="btn btn-primary auth-submit-btn" disabled={isSubmitting}>
-                                {isSubmitting ? 'Submitting Request...' : <>Request Reset <Send size={18} /></>}
+                                {isSubmitting ? 'Generating Code...' : <>Request Reset <Send size={18} /></>}
                             </button>
                         </form>
                     ) : (
-                        <div className="text-center fade-in" style={{ padding: '2rem 0' }}>
-                            <div style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>
-                                <Send size={60} style={{ margin: '0 auto' }} />
+                        <form onSubmit={handleResetPassword} className="auth-form">
+                            {demoCode && (
+                                <div className="success-banner" style={{ marginBottom: '1.5rem', padding: '1rem', background: 'rgba(56, 217, 169, 0.1)', border: '1px solid var(--color-primary)', borderRadius: '8px' }}>
+                                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-primary)' }}>
+                                        <strong>[DEMO] Verification Code:</strong> {demoCode}
+                                    </p>
+                                </div>
+                            )}
+
+                            <div className="form-control">
+                                <label>Verification Code</label>
+                                <div className="input-with-icon">
+                                    <ShieldCheck className="input-icon" size={18} />
+                                    <input
+                                        type="text"
+                                        placeholder="6-digit code"
+                                        value={resetCode}
+                                        onChange={(e) => setResetCode(e.target.value)}
+                                        required
+                                    />
+                                </div>
                             </div>
-                            <h3 style={{ color: '#fff', marginBottom: '1rem' }}>Request Received</h3>
-                            <p style={{ color: 'var(--color-text-muted)', marginBottom: '2rem' }}>
-                                Your password reset request has been logged. Our administrative team will verify your credentials and update your password shortly.
-                            </p>
-                        </div>
+
+                            <div className="form-row">
+                                <div className="form-control">
+                                    <label>New Password</label>
+                                    <div className="input-with-icon">
+                                        <Lock className="input-icon" size={18} />
+                                        <input
+                                            type="password"
+                                            placeholder="Min. 6 chars"
+                                            value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="form-control">
+                                    <label>Confirm Password</label>
+                                    <div className="input-with-icon">
+                                        <Lock className="input-icon" size={18} />
+                                        <input
+                                            type="password"
+                                            placeholder="Match password"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {error && <span className="error-msg" style={{ marginBottom: '1rem', display: 'block' }}>{error}</span>}
+                            {success && <span className="success-msg" style={{ marginBottom: '1rem', display: 'block', color: 'var(--color-primary)' }}>{success}</span>}
+
+                            <button type="submit" className="btn btn-primary auth-submit-btn" disabled={isSubmitting || success}>
+                                {isSubmitting ? 'Updating Password...' : <>Update Password <Lock size={18} /></>}
+                            </button>
+                        </form>
                     )}
 
                     <div className="auth-footer">

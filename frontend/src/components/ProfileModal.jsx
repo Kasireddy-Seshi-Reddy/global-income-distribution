@@ -152,7 +152,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                             onClick={() => {
                                 logout();
                                 onClose();
-                                navigate('/');
+                                navigate('/login');
                             }}
                         >
                             <LogOut size={18} /> Log Out

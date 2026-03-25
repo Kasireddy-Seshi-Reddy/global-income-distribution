@@ -36,7 +36,8 @@ export const initDb = async () => {
             TotalTimeSpentOnWebsite INTEGER DEFAULT 0,
             TotalSessions INTEGER DEFAULT 0,
             LastActiveTimestamp DATETIME,
-            EmailVerified BOOLEAN DEFAULT 0
+            EmailVerified BOOLEAN DEFAULT 0,
+            ResetCode TEXT
         );
 
         CREATE TABLE IF NOT EXISTS UserSessions (
