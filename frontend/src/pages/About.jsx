@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { HelpCircle, PieChart, TrendingUp, TrendingDown, Scale, BarChart2, Globe, Activity, X } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { HelpCircle, PieChart, TrendingUp, TrendingDown, Scale, BarChart2, Globe, Activity, X, Info, Zap } from 'lucide-react';
 import './About.css';
 
 const About = () => {
     const [activeCard, setActiveCard] = useState(0);
     const [selectedIndicator, setSelectedIndicator] = useState(null);
+    const [compareSelections, setCompareSelections] = useState([]);
 
     const concepts = [
         {
@@ -60,86 +61,153 @@ const About = () => {
 
     const indicators = [
         {
+            id: 'gdp',
             title: "GDP Per Capita ($)",
             icon: <Globe size={24} />,
-            shortDesc: "Represents the average economic output per person in a country.",
-            detailedExpl: "GDP per capita is calculated by dividing the total Gross Domestic Product by the population. It is commonly used as an indicator of a country's economic performance and standard of living.",
-            whyItMatters: ["Helps compare economic strength across countries", "Indicates overall prosperity", "Used in development classification"],
-            howToInterpret: "Higher values → stronger economy; Lower values → weaker economic output per person.",
-            insight: "Economic strength doesn't always mean low inequality.",
+            insight: "Economic strength does not always mean equal prosperity.",
+            coreExpl: "GDP per capita reflects the average income generated per person in a country. It is a benchmark for economic performance but doesn't show wealth distribution.",
+            whatItReveals: [
+                "Overall economic power",
+                "Standard of living (approximate)",
+                "Development level"
+            ],
+            realityCheck: "A country can have high GDP per capita but still suffer from high inequality.",
+            interpretation: { high: "Strong economy", low: "Limited economic output" },
+            visualValue: 75,
             color: "green"
         },
         {
+            id: 'gini',
             title: "Gini Index (0–100)",
             icon: <Scale size={24} />,
-            shortDesc: "Measures income inequality within a country.",
-            detailedExpl: "The Gini Index ranges from 0 to 100, where 0 represents perfect equality (everyone earns the same) and 100 represents maximum inequality (one person earns everything).",
-            whyItMatters: ["Core indicator of income inequality", "Widely used in economic research", "Helps identify disparity in wealth distribution"],
-            howToInterpret: "0–30 → Low inequality; 30–50 → Moderate inequality; 50+ → High inequality.",
-            insight: "A Gini increase of 1% can significantly impact long-term social mobility.",
+            insight: "This is the true face of inequality.",
+            coreExpl: "The Gini Index measures how unevenly income is distributed across a population, compressing disparity into a single number.",
+            whatItReveals: [
+                "Wealth distribution fairness",
+                "Economic imbalance",
+                "Social disparity"
+            ],
+            realityCheck: "Even economically strong nations can have high inequality.",
+            interpretation: { high: "Extreme inequality", low: "Perfect equality" },
+            visualValue: 45,
             color: "red"
         },
         {
+            id: 'lowest20',
             title: "Income Share: Lowest 20%",
             icon: <TrendingUp size={24} />,
-            shortDesc: "Percentage of total income earned by the poorest 20% of the population.",
-            detailedExpl: "This indicator reflects how much of the total national income is received by the bottom fifth of the population.",
-            whyItMatters: ["Indicates inclusiveness of economic growth", "Shows whether lower-income groups benefit from the economy"],
-            howToInterpret: "Higher percentage → better income distribution; Lower percentage → greater inequality.",
-            insight: "A strong base leads to more resilient national economies.",
+            insight: "How much does the poorest population actually receive?",
+            coreExpl: "This shows the portion of national income earned by the bottom 20% of the population.",
+            whatItReveals: [
+                "Inclusiveness of growth",
+                "Poverty-level income participation"
+            ],
+            realityCheck: "A low share here often correlates with slow social mobility.",
+            interpretation: { high: "More inclusive economy", low: "Marginalized population" },
+            visualValue: 8,
             color: "yellow"
         },
         {
+            id: 'highest20',
             title: "Income Share: Highest 20%",
             icon: <TrendingDown size={24} />,
-            shortDesc: "Percentage of total income earned by the richest 20% of the population.",
-            detailedExpl: "This shows how concentrated income is among the wealthiest population group.",
-            whyItMatters: ["Indicates wealth concentration", "Helps measure economic imbalance"],
-            howToInterpret: "Higher percentage → more income concentration; Lower percentage → more balanced distribution.",
-            insight: "Excessive concentration can stifle overall consumer demand.",
+            insight: "Where most of the wealth accumulates.",
+            coreExpl: "Represents how much income is concentrated among the richest population segment.",
+            whatItReveals: [
+                "Wealth concentration",
+                "Economic dominance"
+            ],
+            realityCheck: "Excessive concentration can stifle overall consumer demand.",
+            interpretation: { high: "Wealth concentration", low: "Balanced economy" },
+            visualValue: 52,
             color: "red"
         },
         {
+            id: 'second20',
             title: "Income Share: Second 20%",
             icon: <Activity size={24} />,
-            shortDesc: "Income share of the population just above the lowest 20%.",
-            detailedExpl: "Represents the lower-middle income group and provides insight into income distribution beyond extreme poverty.",
-            whyItMatters: ["Shows depth of middle-class formation", "Helps analyze gradual income progression"],
-            howToInterpret: "Stable or increasing share → improving income distribution.",
-            insight: "This group is often the engine of small-scale entrepreneurship.",
+            insight: "The stepping stone out of poverty.",
+            coreExpl: "Represents the lower-middle class just above the poorest group.",
+            whatItReveals: [
+                "Early-stage economic mobility",
+                "Transition from poverty"
+            ],
+            realityCheck: "Growth here is critical for reducing extreme poverty.",
+            interpretation: { high: "Emerging middle class", low: "Stagnant mobility" },
+            visualValue: 12,
             color: "yellow"
         },
         {
+            id: 'third20',
             title: "Income Share: Third 20%",
             icon: <PieChart size={24} />,
-            shortDesc: "Represents the middle segment of the population.",
-            detailedExpl: "This group typically reflects the economic condition of the core middle class.",
-            whyItMatters: ["Indicates strength of middle-income population", "Important for economic stability"],
-            howToInterpret: "Balanced share → strong middle class.",
-            insight: "The resilience of this group defines national social security stability.",
+            insight: "The backbone of the middle class.",
+            coreExpl: "Captures the economic condition of the core middle segments of the population.",
+            whatItReveals: [
+                "Stability of the middle class",
+                "Economic balance"
+            ],
+            realityCheck: "A shrinking middle share is an early warning sign of economic polarization.",
+            interpretation: { high: "Stable middle class", low: "Economic hollowing" },
+            visualValue: 15,
             color: "yellow"
         },
         {
+            id: 'fourth20',
             title: "Income Share: Fourth 20%",
             icon: <BarChart2 size={24} />,
-            shortDesc: "Represents the upper-middle income group.",
-            detailedExpl: "This segment lies just below the top 20% and reflects near-affluent population income distribution.",
-            whyItMatters: ["Shows transition from middle to high-income group", "Helps analyze income layering"],
-            howToInterpret: "Higher share → concentration shifting upward.",
-            insight: "Growth here often indicates a high-skilled labor force expansion.",
+            insight: "The bridge between middle class and wealth.",
+            coreExpl: "Represents the upper-middle income segment, reflecting near-affluent trends.",
+            whatItReveals: [
+                "Income progression",
+                "Near-affluent population trends"
+            ],
+            realityCheck: "High values here indicate wealth shifting toward the top quintile.",
+            interpretation: { high: "Near-affluent growth", low: "Broad wealth distribution" },
+            visualValue: 20,
             color: "yellow"
         },
         {
+            id: 'unemployment',
             title: "Unemployment Rate (%)",
-            icon: <HelpCircle size={24} />,
-            shortDesc: "Percentage of the labor force that is unemployed.",
-            detailedExpl: "This indicator measures the proportion of people actively seeking jobs but unable to find employment.",
-            whyItMatters: ["Reflects economic health", "Indicates job availability", "Linked to poverty and inequality"],
-            howToInterpret: "Low rate → strong labor market; High rate → economic distress.",
-            insight: "Structural unemployment is a leading precursor to long-term inequality.",
+            icon: <Info size={24} />,
+            insight: "A direct signal of economic stress.",
+            coreExpl: "Measures the percentage of people actively seeking jobs but unable to find work.",
+             whatItReveals: [
+                "Job market health",
+                "Economic stability",
+                "Social risk factors"
+            ],
+            realityCheck: "Low unemployment doesn't guarantee high wages if inequality is high.",
+            interpretation: { high: "Economic pressure", low: "Strong economy" },
+            visualValue: 6,
             color: "red"
         }
     ];
+
+    const toggleCompare = (id) => {
+        setCompareSelections(prev => {
+            if (prev.includes(id)) return prev.filter(i => i !== id);
+            if (prev.length >= 2) return [prev[1], id];
+            return [...prev, id];
+        });
+    };
+
+    const relationshipMsg = useMemo(() => {
+        if (compareSelections.length < 2) return null;
+        const [id1, id2] = compareSelections;
+        
+        if (id1 === 'gdp' && id2 === 'gini' || id1 === 'gini' && id2 === 'gdp') {
+            return "High GDP + High Gini = Unequal Growth. Economic expansion is concentrated at the top.";
+        }
+        if (id1 === 'gini' && id2 === 'lowest20' || id1 === 'lowest20' && id2 === 'gini') {
+            return "Inequality vs Inclusion: A high Gini indicates the bottom 20% are receiving significantly less growth share.";
+        }
+        if (id1 === 'highest20' && id2 === 'unemployment' || id1 === 'unemployment' && id2 === 'highest20') {
+            return "Economic Pressure: When unemployment rises while top share stays high, social disparity deepens.";
+        }
+        return "Analyzing the Interplay: These two indicators define different facets of national economic health.";
+    }, [compareSelections]);
 
     return (
         <section id="about" className="about-section">
@@ -189,86 +257,131 @@ const About = () => {
                     </div>
                 </div>
 
-                {/* Indicator Insights Section */}
-                <div className="indicator-insights-container">
+                {/* Indicator Insights: Data Storytelling Experience */}
+                <div className="indicator-storytelling-container">
                     <div className="text-center">
                         <h2 className="section-title">
-                            Indicator <span className="gradient-text">Insights</span>
+                            🌐 Indicator <span className="gradient-text">Insights</span>
                         </h2>
+                        <h3 className="storytelling-tagline">Understanding the Building Blocks of Inequality</h3>
                         <p className="section-subtitle">
-                            A simple, interactive guide to the core economic indicators used in our global research.
+                            It should feel like a guided data storytelling experience where users learn by interacting.
                         </p>
                     </div>
 
-                    <div className="indicators-grid">
-                        {indicators.map((item, idx) => (
-                            <div
-                                key={idx}
-                                className={`indicator-card glass-panel ${item.color}`}
-                                onClick={() => setSelectedIndicator(item)}
-                            >
-                                <div className="indicator-header">
-                                    <div className="indicator-icon-wrapper">
-                                        {item.icon}
-                                    </div>
-                                    <div className="indicator-header-text">
-                                        <h4>{item.title}</h4>
-                                        <p className="short-desc">{item.shortDesc}</p>
-                                    </div>
-                                </div>
+                    {/* Comparison Highlight Bar */}
+                    <div className={`insight-highlight-bar ${relationshipMsg ? 'active' : ''}`}>
+                        <div className="highlight-content">
+                            <Zap className="highlight-icon" size={20} />
+                            <span>{relationshipMsg || "Select two indicators to compare their relationship"}</span>
+                        </div>
+                    </div>
 
-                                <div className="indicator-footer">
-                                    <span className="learn-more-btn">Learn More +</span>
+                    <div className="insight-track-container">
+                        <div className="insight-track">
+                            {indicators.map((item, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`insight-card glass-panel ${item.color} ${compareSelections.includes(item.id) ? 'selected' : ''}`}
+                                    onClick={() => toggleCompare(item.id)}
+                                >
+                                    <div className="card-selection-indicator">
+                                        {compareSelections.includes(item.id) ? "Selected" : "Click to Compare"}
+                                    </div>
+                                    
+                                    <div className="card-header">
+                                        <div className="card-icon-main">{item.icon}</div>
+                                        <div className="card-title-main">
+                                            <h4>{item.title}</h4>
+                                            <p className="insight-line">“{item.insight}”</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Mini Visual Representation */}
+                                    <div className="card-visual-strip">
+                                        <div className="visual-bar-bg">
+                                            <div 
+                                                className="visual-bar-fill"
+                                                style={{ width: `${item.visualValue}%` }}
+                                            ></div>
+                                        </div>
+                                        <span className="visual-label">Global Metric Weight</span>
+                                    </div>
+
+                                    <div className="card-short-expl">
+                                        <p>{item.coreExpl}</p>
+                                    </div>
+
+                                    <div className="card-actions">
+                                        <button 
+                                            className="btn-story-more"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedIndicator(item);
+                                            }}
+                                        >
+                                            Deep Dive <ArrowRight size={16} />
+                                        </button>
+                                    </div>
+
+                                    {/* Interpretation Layer */}
+                                    <div className="interpretation-scale">
+                                        <div className="scale-point low">
+                                            <span className="scale-label">Low Scope</span>
+                                            <span className="scale-msg">{item.interpretation.low}</span>
+                                        </div>
+                                        <div className="scale-point high">
+                                            <span className="scale-label">High Scope</span>
+                                            <span className="scale-msg">{item.interpretation.high}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Premium Indicator Modal */}
+            {/* Premium Indicator Modal (Immersive View) */}
             {selectedIndicator && (
-                <div className="indicator-modal-overlay fade-in" onClick={() => setSelectedIndicator(null)}>
+                <div className="indicator-modal-overlay" onClick={() => setSelectedIndicator(null)}>
                     <div className="indicator-modal-content glass-panel bounce-in" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close-btn" onClick={() => setSelectedIndicator(null)}>
-                            <X size={24} />
-                        </button>
+                        <button className="modal-close-btn" onClick={() => setSelectedIndicator(null)}><X size={24} /></button>
                         
                         <div className="modal-header">
-                            <div className={`modal-icon-wrapper ${selectedIndicator.color}`}>
-                                {selectedIndicator.icon}
-                            </div>
+                            <div className={`modal-icon-wrapper ${selectedIndicator.color}`}>{selectedIndicator.icon}</div>
                             <div className="modal-title-area">
                                 <h3>{selectedIndicator.title}</h3>
-                                <div className={`status-pill ${selectedIndicator.color}`}>
-                                    {selectedIndicator.color === 'green' ? 'Positive growth' : selectedIndicator.color === 'red' ? 'High risk' : 'Neutral factor'}
-                                </div>
+                                <p className="modal-insight-quote">“{selectedIndicator.insight}”</p>
                             </div>
                         </div>
 
                         <div className="modal-body">
-                            <div className="modal-description">
-                                <h5>What is it?</h5>
-                                <p>{selectedIndicator.detailedExpl}</p>
+                            <div className="modal-section-v2">
+                                <h5>Reality Check</h5>
+                                <div className="reality-card">
+                                    <Zap size={20} className="reality-icon" />
+                                    <p>{selectedIndicator.realityCheck}</p>
+                                </div>
                             </div>
 
-                            <div className="modal-info-grid">
-                                <div className="info-section">
-                                    <h5>Why It Matters</h5>
+                            <div className="modal-grid-v2">
+                                <div className="modal-info-col">
+                                    <h5>What it Reveals</h5>
                                     <ul>
-                                        {selectedIndicator.whyItMatters.map((note, i) => <li key={i}>{note}</li>)}
+                                        {selectedIndicator.whatItReveals.map((point, i) => <li key={i}>{point}</li>)}
                                     </ul>
                                 </div>
-                                <div className="info-section">
-                                    <h5>How to Interpret</h5>
-                                    <div className="interpret-box">
-                                        <p>{selectedIndicator.howToInterpret}</p>
-                                    </div>
+                                <div className="modal-info-col">
+                                    <h5>Economic Influence</h5>
+                                    <p className="influence-text">{selectedIndicator.coreExpl}</p>
                                 </div>
                             </div>
 
-                            <div className="modal-footer-insight">
-                                <strong>Real-World Insight:</strong> {selectedIndicator.insight}
+                            <div className="interpretation-summary">
+                                <strong>High Factor:</strong> {selectedIndicator.interpretation.high}
+                                <span className="divider">|</span>
+                                <strong>Low Factor:</strong> {selectedIndicator.interpretation.low}
                             </div>
                         </div>
                     </div>
@@ -277,5 +390,11 @@ const About = () => {
         </section>
     );
 };
+
+const ArrowRight = ({ size }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+);
 
 export default About;
