@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/home/Hero';
-import About from '../components/home/About';
 import Insights from '../components/home/Insights';
 import Downloads from '../components/home/Downloads';
 import FAQ from '../components/home/FAQ';
@@ -59,7 +58,6 @@ const Home = () => {
         <div className="home-page">
             {/* Floating navigation dots can go here */}
             <Hero />
-            <div className="fade-in-section"><About /></div>
             <div className="fade-in-section"><Insights /></div>
             <div className="fade-in-section"><Downloads /></div>
             <div className="fade-in-section"><FAQ /></div>

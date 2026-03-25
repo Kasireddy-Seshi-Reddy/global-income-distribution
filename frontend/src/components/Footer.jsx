@@ -33,7 +33,7 @@ const Footer = () => {
 
                     <div className="footer-links">
                         <h4>Quick Links</h4>
-                        <Link to="/#about">About Inequality</Link>
+                        <Link to="/about">About Inequality</Link>
                         <Link to="/dashboard">Interactive Dashboard</Link>
                         <Link to="/#methodology">Data & Methodology</Link>
                     </div>

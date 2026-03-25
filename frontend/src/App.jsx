@@ -11,6 +11,7 @@ import CursorGlow from './components/CursorGlow';
 import AnalyticsTracker from './components/AnalyticsTracker';
 import AdminRoute from './components/AdminRoute';
 import AdminLayout from './pages/admin/AdminLayout';
+import About from './pages/About';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import UserManagement from './pages/admin/UserManagement';
 import QueryManagement from './pages/admin/QueryManagement';
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 

@@ -80,7 +80,7 @@ const Navbar = ({ isInitialLoad }) => {
                 {!isAuthPage && (
                     <div className="nav-links desktop-only">
                         <Link to="/" onClick={handleHomeClick} className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-                        <Link to="/#about">About</Link>
+                        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
                         <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
                         {isAuthenticated && user?.role === 'Admin' && (
                             <Link to="/admin" onClick={handleAdminClick} className={location.pathname.startsWith('/admin') ? 'active gradient-text' : 'gradient-text'}>Admin Portal</Link>
@@ -124,7 +124,7 @@ const Navbar = ({ isInitialLoad }) => {
                     {!isAuthPage && (
                         <>
                             <Link to="/" onClick={handleHomeClick}>Home</Link>
-                            <Link to="/#about" onClick={closeMenu}>About</Link>
+                            <Link to="/about" onClick={closeMenu} className={location.pathname === '/about' ? 'active' : ''}>About</Link>
                             <Link to="/dashboard" onClick={closeMenu}>Dashboard</Link>
                             {isAuthenticated && user?.role === 'Admin' && (
                                 <Link to="/admin" onClick={handleAdminClick} className="gradient-text">Admin Portal</Link>
