@@ -144,13 +144,15 @@ const About = () => {
     return (
         <section id="about" className="about-section">
             <div className="container">
-                <h2 className="section-title">
-                    Understanding <span className="gradient-text">Inequality</span>
-                </h2>
-                <p className="section-subtitle">
-                    Income inequality is not just a statistical artifact; it represents structural
-                    barriers to human capital development and inclusive growth.
-                </p>
+                <div className="text-center">
+                    <h2 className="section-title">
+                        Understanding <span className="gradient-text">Inequality</span>
+                    </h2>
+                    <p className="section-subtitle">
+                        Income inequality is not just a statistical artifact; it represents structural
+                        barriers to human capital development and inclusive growth.
+                    </p>
+                </div>
 
                 <div className="about-grid">
                     <div className="about-cards-nav">
