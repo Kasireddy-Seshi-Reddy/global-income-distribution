@@ -19,13 +19,6 @@ const About = () => {
             statLabel: "hold 52% of global income"
         },
         {
-            title: "What is Gini Index?",
-            icon: <Scale size={28} />,
-            content: "A statistical measure of economic inequality ranging from 0 (perfect equality) to 100 (perfect inequality). A higher Gini index indicates greater inequality.",
-            stat: "0 - 100",
-            statLabel: "Measurement Scale"
-        },
-        {
             title: "Income Share: Top vs Bottom",
             icon: <PieChart size={28} />,
             content: "By comparing the income share held by the richest 10% against the poorest 10%, we uncover the real concentration of wealth and social polarity in nations.",
