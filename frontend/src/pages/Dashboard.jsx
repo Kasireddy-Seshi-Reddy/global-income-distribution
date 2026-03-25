@@ -3,6 +3,7 @@ import { BarChart2 } from 'lucide-react';
 import DashboardEmbed from '../components/home/DashboardEmbed';
 import Visualizations from '../components/home/Visualizations';
 import ComparisonTool from '../components/home/ComparisonTool';
+import SupportTracker from '../components/dashboard/SupportTracker';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -26,6 +27,7 @@ const Dashboard = () => {
                 <DashboardEmbed />
                 <Visualizations />
                 <ComparisonTool />
+                <SupportTracker />
             </div>
         </div>
     );

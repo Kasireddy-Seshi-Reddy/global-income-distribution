@@ -1,0 +1,136 @@
+.support-tracker-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--glass-background);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.support-tracker-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.support-tracker-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.query-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.query-card {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.query-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-primary-glow);
+    transform: translateY(-2px);
+}
+
+.query-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.query-subject {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.query-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.query-body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+}
+
+.admin-response-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(56, 217, 169, 0.08);
+    border-left: 3px solid #38D9A9;
+    border-radius: 4px;
+    animation: fadeIn 0.5s ease;
+}
+
+.admin-response-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #38D9A9;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.admin-response-text {
+    font-size: 0.9rem;
+    color: #fff;
+    white-space: pre-wrap;
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: rgba(255, 192, 72, 0.15);
+    color: #FFC048;
+}
+
+.status-responded {
+    background: rgba(56, 217, 169, 0.15);
+    color: #38D9A9;
+}
+
+.no-queries {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-text-muted);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+[data-theme='light'] .query-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .query-subject,
+[data-theme='light'] .admin-response-text {
+    color: #000;
+}
+
+[data-theme='light'] .query-body {
+    color: #444;
+}

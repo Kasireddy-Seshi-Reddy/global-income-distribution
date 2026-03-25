@@ -1,7 +1,24 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
+
+// GET /api/queries/my-queries (Fetch history for logged-in user)
+router.get('/my-queries', verifyToken, async (req, res) => {
+    try {
+        const db = req.db;
+        const queries = await db.all(`
+            SELECT * FROM UserQueries 
+            WHERE UserID = ? 
+            ORDER BY SubmittedDate DESC
+        `, [req.user.id]);
+        res.status(200).json({ success: true, data: queries });
+    } catch (error) {
+        console.error('Fetch my-queries error:', error);
+        res.status(500).json({ success: false, message: 'Failed to fetch your queries' });
+    }
+});
 
 router.post('/', async (req, res) => {
     try {
