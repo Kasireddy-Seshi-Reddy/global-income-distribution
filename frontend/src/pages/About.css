@@ -288,9 +288,16 @@
     font-size: 1.85rem;
     font-weight: 800; /* Extra bold for visibility */
     margin-bottom: 1rem;
-    color: #fff; /* Solid white for high contrast */
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Depth for visibility on glass */
+    color: #fff; /* White for dark mode */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); 
+    transition: color 0.3s ease;
 }
+
+[data-theme='light'] .story-header-col h4 {
+    color: #000; /* Black for light mode */
+    text-shadow: none;
+}
+
 
 .insight-line-v2 {
     font-size: 1.1rem;
