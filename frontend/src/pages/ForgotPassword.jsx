@@ -13,13 +13,15 @@ const ForgotPassword = () => {
     const [demoCode, setDemoCode] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
+    const [requestSuccess, setRequestSuccess] = useState('');
+    const [resetSuccess, setResetSuccess] = useState('');
     const navigate = useNavigate();
 
     const handleRequestCode = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setError('');
+        setRequestSuccess('');
         
         try {
             const res = await fetch(`${API_URL}/auth/forgot-password`, {
@@ -31,7 +33,7 @@ const ForgotPassword = () => {
             if (data.success) {
                 setDemoCode(data.demoCode);
                 setStep(2);
-                setSuccess('Verification code generated successfully.');
+                setRequestSuccess('Verification code generated.');
             } else {
                 setError(data.message);
             }
@@ -55,6 +57,7 @@ const ForgotPassword = () => {
 
         setIsSubmitting(true);
         setError('');
+        setResetSuccess('');
 
         try {
             const res = await fetch(`${API_URL}/auth/reset-password`, {
@@ -64,7 +67,7 @@ const ForgotPassword = () => {
             });
             const data = await res.json();
             if (data.success) {
-                setSuccess('Password reset successfully! Redirecting to login...');
+                setResetSuccess('Password updated successfully! Redirecting...');
                 setTimeout(() => navigate('/login'), 3000);
             } else {
                 setError(data.message);
@@ -168,9 +171,9 @@ const ForgotPassword = () => {
                             </div>
 
                             {error && <span className="error-msg" style={{ marginBottom: '1rem', display: 'block' }}>{error}</span>}
-                            {success && <span className="success-msg" style={{ marginBottom: '1rem', display: 'block', color: 'var(--color-primary)' }}>{success}</span>}
+                            {resetSuccess && <span className="success-msg" style={{ marginBottom: '1rem', display: 'block', color: 'var(--color-primary)' }}>{resetSuccess}</span>}
 
-                            <button type="submit" className="btn btn-primary auth-submit-btn" disabled={isSubmitting || success}>
+                            <button type="submit" className="btn btn-primary auth-submit-btn" disabled={isSubmitting || resetSuccess}>
                                 {isSubmitting ? 'Updating Password...' : <>Update Password <Lock size={18} /></>}
                             </button>
                         </form>
