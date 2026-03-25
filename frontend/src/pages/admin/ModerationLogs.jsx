@@ -60,7 +60,7 @@ const ModerationLogs = () => {
                                         {log.ActionTaken || 'Unknown'}
                                     </span>
                                 </td>
-                                <td>{log.Reason}</td>
+                                <td style={{ maxWidth: '300px', whiteSpace: 'pre-wrap', fontSize: '0.9rem' }}>{log.Reason}</td>
                                 <td><small style={{ color: 'var(--color-text-muted)' }}>{log.AdminEmail}</small></td>
                             </tr>
                         ))}

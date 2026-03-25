@@ -77,7 +77,7 @@ const QueryManagement = () => {
                                     <small style={{ color: 'var(--color-text-muted)' }}>{query.UserEmail}</small>
                                 </td>
                                 <td>{query.Subject}</td>
-                                <td style={{ maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                <td style={{ maxWidth: '400px', whiteSpace: 'pre-wrap', fontSize: '0.9rem', lineHeight: '1.5', padding: '1rem' }}>
                                     {query.Message}
                                 </td>
                                 <td>
