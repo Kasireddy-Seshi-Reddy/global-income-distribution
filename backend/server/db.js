@@ -93,14 +93,35 @@ export const initDb = async () => {
         );
     `);
 
-    // Auto-migration for existing databases
     try {
         await dbInstance.exec('ALTER TABLE Users ADD COLUMN ResetCode TEXT;');
     } catch (e) {
         // Column probably already exists, which is fine
     }
 
-    console.log('Database initialized successfully with all tables.');
+    // Bootstrap Admin User if missing
+    try {
+        const ADMIN_EMAIL = 'infosysteam@gmail.com';
+        const adminExists = await dbInstance.get('SELECT * FROM Users WHERE Email = ?', [ADMIN_EMAIL]);
+        if (!adminExists) {
+            console.warn('⚠️ DATABASE RESET DETECTED: Bootstrapping default Admin account...');
+            const bcrypt = await import('bcryptjs');
+            const salt = await bcrypt.default.genSalt(10);
+            const hashedPassword = await bcrypt.default.hash('Infosys@2026', salt);
+            
+            await dbInstance.run(`
+                INSERT INTO Users (FullName, Email, PasswordHash, Role, AccountStatus) 
+                VALUES (?, ?, ?, ?, ?)
+            `, ['System Administrator', ADMIN_EMAIL, hashedPassword, 'Admin', 'Active']);
+            console.log('✅ Admin account recovered via bootstrap.');
+        } else {
+            console.log('✅ Integrity Check: Admin account verified.');
+        }
+    } catch (e) {
+        console.error('❌ Bootstrap failure:', e.message);
+    }
+
+    console.log('Database initialized successfully with all tables and bootstrap completed.');
     return dbInstance;
 };
 
